@@ -22,12 +22,6 @@ module.exports = {
         request.query('select * from SitePlongee', function (err, data) {
             res.render('index', {sitesPl: data.recordset});
         });
-    },
-
-    login: function (req, res) {
-        res.render('login');
     }
-
-
 }
 

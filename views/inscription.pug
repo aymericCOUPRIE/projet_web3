@@ -3,7 +3,7 @@ extends header
 block content
 
     p #{title}
-    form(action='./', method='POST')
+    form(action='./inscription', method='POST')
         ul.nav.flex-column
             li.nav-item
                 input(name= 'nom', type='nom', placeholder='Nom' required=true)
@@ -12,7 +12,7 @@ block content
             li.nav-item
                 input(name= 'mail', type='mail', placeholder='mail' required=true)
             li.nav-item
-                input(name= 'pwd', type='pwd', placeholder='pwd' required=true)
+                input(name= 'pswd', type='pswd', placeholder='pwd' required=true)
             li.nav-item
                 input(name= 'ageU', type='ageU', placeholder='ageU' required=true)
             li.nav-item

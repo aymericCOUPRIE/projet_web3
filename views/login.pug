@@ -5,7 +5,7 @@ block content
 
     body
         p #{title}
-        form(action='./login', method='POST')
+        form(action='/login', method='POST')
             ul.nav.flex-column
                 li.nav-item
                     input(name= 'mail', type='mail', placeholder='mail' required=true)
@@ -14,4 +14,4 @@ block content
                 li.nav-item
                     button(type='submit') Submit
 
-        a(href="/form/inscription") Pas de compte ?
+        a(href="/login/inscription") Pas de compte ?

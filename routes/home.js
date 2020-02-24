@@ -8,7 +8,6 @@ router.get('/', home.accueil);
 router.post('/', home.selection);
 
 router.get('/CarriereTest*', home.choixCarriere);
-router.get('/login', home.login);
 
 module.exports = router;
 

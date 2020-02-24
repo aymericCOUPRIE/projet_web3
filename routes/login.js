@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 var express = require('express');
 var router = express.Router();
 var sql = require('mssql/msnodesqlv8');
@@ -36,3 +36,4 @@ router.post('/', function (req, res) {
 
 module.exports = router;
 
+*/
