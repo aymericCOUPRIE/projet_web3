@@ -8,6 +8,11 @@ router.get('/', function (req, res, next) {
     res.render('login', { title: 'Express' });
 });
 
+router.get('/inscription', function (req, res) {
+    console.log('test');
+    res.render('inscription');
+});
+
 
 router.post('/', function (req, res) {
 

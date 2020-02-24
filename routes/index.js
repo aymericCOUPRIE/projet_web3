@@ -2,8 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
-var connection = require('../config/db');
-var sql = require('mssql/msnodesqlv8');
+var app = express();
+
 
 
 router.get('/', function (req, res, next) {
@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', function (req, res, next) {
-    res.render('login');
+    app.use('/login', );
 });
 
 router.get('/CarriereTest*', function (req, res, next) {
@@ -21,7 +21,6 @@ router.get('/CarriereTest*', function (req, res, next) {
         res.render('index', { sitesPl: recordset.recordset})
     });
 });
-
 
 
 
