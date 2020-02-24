@@ -1,7 +1,7 @@
 
 module.exports = {
     render: function (req, res) {
-        res.render('form');
+        res.render('inscription');
     },
 
     sub: function (req, res) {
@@ -13,7 +13,6 @@ module.exports = {
             connection.close();
         });
 
-        res.render('form', { title: mail });
-
+        res.redirect('/');
     }
 }
