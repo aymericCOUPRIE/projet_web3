@@ -1,0 +1,12 @@
+include header
+
+block content
+
+    nav.navbar.navbar-light.bg-light
+        ul.nav.flex-column
+            each sitePl in sitesPl
+                li.nav-item
+                    a.nav-link(href='/' + sitePl.nomSitePl) #{sitePl.nomSitePl}
+
+
+

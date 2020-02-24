@@ -1,0 +1,17 @@
+extends header
+
+
+block content
+
+    body
+        p #{title}
+        form(action='./login', method='POST')
+            ul.nav.flex-column
+                li.nav-item
+                    input(name= 'mail', type='mail', placeholder='mail' required=true)
+                li.nav-item
+                    input(name= 'pwd', type='pwd', placeholder='pwd' required=true)
+                li.nav-item
+                    button(type='submit') Submit
+
+        a(href="/inscription") Pas de compte ?

@@ -1,0 +1,19 @@
+extends header
+
+block content
+
+    p #{title}
+    form(action='./', method='POST')
+        ul.nav.flex-column
+            li.nav-item
+                input(name= 'nom', type='nom', placeholder='Nom' required=true)
+            li.nav-item
+                input(name= 'prenom', type='prenom', placeholder='Prenom' required=true)
+            li.nav-item
+                input(name= 'mail', type='mail', placeholder='mail' required=true)
+            li.nav-item
+                input(name= 'pwd', type='pwd', placeholder='pwd' required=true)
+            li.nav-item
+                input(name= 'ageU', type='ageU', placeholder='ageU' required=true)
+            li.nav-item
+                button(type='submit') Submit
