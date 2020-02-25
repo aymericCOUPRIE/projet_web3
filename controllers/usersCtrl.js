@@ -6,8 +6,8 @@ var jwtCtrl = require('../config/jwt');
 
 module.exports = {
     accueil: function (req, res) {
-        var idUser = jwtCtrl.extractToken_cookie(req);
-        console.log(idUser);
+        //var idUser = jwtCtrl.extractToken_cookie(req);
+        //console.log(idUser);
 
         var request = new sql.Request(connection);
         request.query('select * from SitePlongee', function (err, data) {

@@ -1,6 +1,7 @@
 'use strict';
 var debug = require('debug');
 var express = require('express');
+var sanitizer = require('express-sanitizer')
 var path = require('path');
 //var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -21,6 +22,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(sanitizer());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);

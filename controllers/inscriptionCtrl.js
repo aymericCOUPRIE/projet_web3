@@ -1,10 +1,7 @@
-var bcrypt = require('bcrypt');
 var connection = require('../config/db');
 var sql = require('mssql/msnodesqlv8');
 var bcrypt = require('bcrypt');
 var jwt = require('../config/jwt');
-var Cookies = require('cookie-parser');
-
 
 module.exports = {
     loginDisplay: function (req, res) {
@@ -13,8 +10,8 @@ module.exports = {
 
     loginVerif: function (req, res ) {
         var  request = new sql.Request(connection);
-        var mail = req.body.mail;
-        var pwd = req.body.pwd;
+        var mail = req.sanitize(req.body.mail);
+        var pwd = req.sanitize(req.body.pwd);
 
         request.input('mail', mail);
         request.query("SELECT * FROM Users Where mailUser = @mail", function (err, resultat) {
@@ -43,14 +40,13 @@ module.exports = {
     },
 
     sub: function (req, res) {
-
         var request = new sql.Request(connection);
 
-        var nom = req.body.nom;
-        var prenom = req.body.prenom;
-        var mail = req.body.mail;
-        var age = req.body.ageU;
-        var pwd = req.body.pswd;
+        const nom = req.sanitize(req.body.nom);
+        const prenom = req.sanitize(req.body.prenom);
+        const mail = req.sanitize(req.body.email);
+        const dateN = req.sanitize(req.body.dateNaissance);
+        const pwd = req.sanitize(req.body.pswd);
 
         if(nom == null || prenom == null || pwd == null || mail == null) {
             return res.status(400).json({ 'error': 'missing parameters'})
@@ -61,13 +57,13 @@ module.exports = {
             request.input('prenom', prenom);
             request.input('mail', mail);
             request.input('pwd', bcryptedPassword);
-            request.input('age', age);
-            request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser) VALUES (@nom, @prenom, @mail, @pwd, @age)", function (err) {
+            request.input('dateNaissance', dateN);
+            request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance)", function (err) {
                 if (err) {
                     console.log(err);
                 }
+                res.redirect('/');
             });
         });
-        res.redirect('/');
     }
 }

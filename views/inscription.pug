@@ -1,19 +1,26 @@
 extends header
 
 block content
+    .main.container
+        .row
+            .col-md-auto
+                h1.display-4.m-b-2 Formulaire d'inscription
 
-    p #{title}
-    form(action='./inscription', method='POST')
-        ul.nav.flex-column
-            li.nav-item
-                input(name= 'nom', type='nom', placeholder='Nom' required=true)
-            li.nav-item
-                input(name= 'prenom', type='prenom', placeholder='Prenom' required=true)
-            li.nav-item
-                input(name= 'mail', type='mail', placeholder='mail' required=true)
-            li.nav-item
-                input(name= 'pswd', type='pswd', placeholder='pwd' required=true)
-            li.nav-item
-                input(name= 'ageU', type='ageU', placeholder='ageU' required=true)
-            li.nav-item
-                button(type='submit') Submit
+                form(method='POST' action='./inscription')
+                    div.form-group
+                        label(for='nom') Nom:
+                        input#nom.form-control(type='text', placeholder='Nom...' name='nom' required=true)
+                    div.form-group
+                        label(for='prenom') Prenom:
+                        input#prenom.form-control(type='text', placeholder='Prenom...' name='prenom' required=true)
+                    div.form-group
+                        label(for='email') Email:
+                        input#email.form-control(type='email', placeholder='nom@email.com' name='email' required=true)
+                    div.form-group
+                        label(for='dateNaissance') Date de naissance:
+                        input#dateNaissance.form-control(type='date', placeholder='jj/mm/aaaa' name='dateNaissance' required=true)
+                    div.form-group
+                        label(for='pswd') Password:
+                        input#pswd.form-control(type='password' name='pswd' required=true)
+
+                    button.btn.btn-primary(type='submit') Valider
