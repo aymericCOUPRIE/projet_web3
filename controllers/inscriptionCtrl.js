@@ -3,6 +3,7 @@ var connection = require('../config/db');
 var sql = require('mssql/msnodesqlv8');
 var bcrypt = require('bcrypt');
 var jwt = require('../config/jwt');
+var Cookies = require('cookie-parser');
 
 
 module.exports = {
@@ -22,12 +23,10 @@ module.exports = {
             bcrypt.compare(pwd, resultat.recordset[0].passwordUser, function (err, match) {
                 if(match) {
                     console.log("Authentification vérifiée");
-                    token = jwt.generateTokenForUser(resultat.recordset[0]);
-                    console.log(token);
-                    res.redirect('/');
+                    var token = jwt.generateTokenForUser(resultat.recordset[0]);
+                    return res.cookie('Aymeric', token, {expire: 3600000 + Date.now()}).redirect('/');
                 } else {
                     console.log('Athentification refusée');
-                    res.redirect('/login');
                 }
                 if(err) {
                     console.log(err);
@@ -37,7 +36,6 @@ module.exports = {
                 console.log(err);
             }
         });
-//        res.redirect('/index');
     },
 
     subscribe: function (req, res) {
