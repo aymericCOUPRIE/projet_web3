@@ -1,7 +1,7 @@
 'use strict';
 var debug = require('debug');
 var express = require('express');
-var sanitizer = require('express-sanitizer')
+var sanitizer = require('express-sanitizer');
 var path = require('path');
 //var favicon = require('serve-favicon');
 var logger = require('morgan');

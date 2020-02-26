@@ -10,5 +10,3 @@ router.post('/', home.selection);
 router.get('/CarriereTest*', home.choixCarriere);
 
 module.exports = router;
-
-//app.get('/', home.accueil);

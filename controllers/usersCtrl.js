@@ -27,7 +27,7 @@ module.exports = {
         var request = new sql.Request(connection);
         var pathname = url.parse(req.url).pathname;
         pathname = pathname.replace('/', '');
-        console.log(pathname);
+        //console.log(pathname);
 
         request.query('select * from SitePlongee', function (err, data) {
             request.input('pathname', pathname);

@@ -1,37 +1,41 @@
 var connection = require('../config/db');
 var sql = require('mssql/msnodesqlv8');
 var bcrypt = require('bcrypt');
-var jwt = require('../config/jwt');
+var idendification = require('../models/identification');
 
 module.exports = {
     loginDisplay: function (req, res) {
-        res.render('login');
+        idendification.extractUserFromCookieToken(req, function (data) {
+            if(data == 0) {
+                res.render('login');
+            } else {
+                res.redirect('/');
+                //mettre un message en disant qu'il est déjà connecté
+            }
+        });
     },
 
     loginVerif: function (req, res ) {
-        var  request = new sql.Request(connection);
+        var request = new sql.Request(connection);
         var mail = req.sanitize(req.body.mail);
         var pwd = req.sanitize(req.body.pwd);
 
+        console.log('loginVerif');
         request.input('mail', mail);
         request.query("SELECT * FROM Users Where mailUser = @mail", function (err, resultat) {
-            console.log(resultat.recordset[0].passwordUser);
-
+            console.log('loginVerif');
             bcrypt.compare(pwd, resultat.recordset[0].passwordUser, function (err, match) {
+                console.log("MATCH", match);
                 if(match) {
-                    console.log("Authentification vérifiée");
-                    var token = jwt.generateTokenForUser(resultat.recordset[0]);
-                    return res.cookie('Aymeric', token, {expire: 3600000 + Date.now()}).redirect('/');
+                    var idUser = resultat.recordset[0].idUser;
+                    idendification.creationToken(res, idUser, function (result) {
+                        console.log("RESULT");
+                        res.redirect('/');
+                    });
                 } else {
-                    console.log('Athentification refusée');
-                }
-                if(err) {
-                    console.log(err);
+                    res.redirect('/');
                 }
             });
-            if(err) {
-                console.log(err);
-            }
         });
     },
 
@@ -39,7 +43,7 @@ module.exports = {
         res.render('inscription');
     },
 
-    sub: function (req, res) {
+    sub: async function (req, res) {
         var request = new sql.Request(connection);
 
         const nom = req.sanitize(req.body.nom);
@@ -52,18 +56,23 @@ module.exports = {
             return res.status(400).json({ 'error': 'missing parameters'})
         }
 
-        bcrypt.hash(pwd, 5, function (err, bcryptedPassword) {
-            request.input('nom', nom);
-            request.input('prenom', prenom);
-            request.input('mail', mail);
-            request.input('pwd', bcryptedPassword);
-            request.input('dateNaissance', dateN);
-            request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance)", function (err) {
-                if (err) {
-                    console.log(err);
-                }
+        idendification.verifUserUnique(mail, function(result) {
+            console.log('RESULT', result);
+            if(result) {
+                bcrypt.hash(pwd, 5, function (err, bcryptedPassword) {
+                    request.input('nom', nom);
+                    request.input('prenom', prenom);
+                    request.input('mail', mail);
+                    request.input('pwd', bcryptedPassword);
+                    request.input('dateNaissance', dateN);
+
+                    request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance)", function (err) {
+                        res.redirect('/');
+                    });
+                });
+            } else {
                 res.redirect('/');
-            });
+            }
         });
     }
 }

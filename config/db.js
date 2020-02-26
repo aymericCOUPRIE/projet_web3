@@ -13,11 +13,18 @@ var dbConfig = {
     }
 };
 
-var connection = new sql.ConnectionPool(dbConfig, function (err) {
-    if (err) console.log(err);
-});
+module.exports = {
+    createRequest: function (res, cb) {
+        var connection = new sql.ConnectionPool(dbConfig, function (err) {
+            if (err) console.log(err);
+        });
+        connection.connect();
+        cb(sql.Request(connection));
+    }
+}
 
-connection.connect();
 
-module.exports = connection;
+
+
+//module.exports = connection;
 
