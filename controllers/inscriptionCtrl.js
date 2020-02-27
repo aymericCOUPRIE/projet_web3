@@ -6,6 +6,7 @@ var idendification = require('../models/identification');
 module.exports = {
     loginDisplay: function (req, res) {
         idendification.extractUserFromCookieToken(req, function (data) {
+            console.log(data);
             if(data == 0) {
                 res.render('login');
             } else {
@@ -20,16 +21,12 @@ module.exports = {
         var mail = req.sanitize(req.body.mail);
         var pwd = req.sanitize(req.body.pwd);
 
-        console.log('loginVerif');
         request.input('mail', mail);
         request.query("SELECT * FROM Users Where mailUser = @mail", function (err, resultat) {
-            console.log('loginVerif');
             bcrypt.compare(pwd, resultat.recordset[0].passwordUser, function (err, match) {
-                console.log("MATCH", match);
                 if(match) {
                     var idUser = resultat.recordset[0].idUser;
                     idendification.creationToken(res, idUser, function (result) {
-                        console.log("RESULT");
                         res.redirect('/');
                     });
                 } else {
