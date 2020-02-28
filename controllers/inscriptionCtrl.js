@@ -6,17 +6,15 @@ var idendification = require('../models/identification');
 module.exports = {
     loginDisplay: function (req, res) {
         idendification.extractUserFromCookieToken(req, function (data) {
-            console.log(data);
             if(data == 0) {
                 res.render('login');
             } else {
                 res.redirect('/');
-                //mettre un message en disant qu'il est déjà connecté
             }
         });
     },
 
-    loginVerif: function (req, res ) {
+    loginVerif: function (req, res , next) {
         var request = new sql.Request(connection);
         var mail = req.sanitize(req.body.mail);
         var pwd = req.sanitize(req.body.pwd);
@@ -24,14 +22,14 @@ module.exports = {
         request.input('mail', mail);
         request.query("SELECT * FROM Users Where mailUser = @mail", function (err, resultat) {
             bcrypt.compare(pwd, resultat.recordset[0].passwordUser, function (err, match) {
-                if(match) {
-                    var idUser = resultat.recordset[0].idUser;
-                    idendification.creationToken(res, idUser, function (result) {
-                        res.redirect('/');
-                    });
-                } else {
-                    res.redirect('/');
-                }
+                idendification.extractUserFromCookieToken(req, function (result) {
+                    if(match &&  result == 0 ) {
+                        var idUser = resultat.recordset[0].idUser;
+                        idendification.creationToken(res, idUser);
+                    }
+                    next();
+                });
+
             });
         });
     },
@@ -40,7 +38,7 @@ module.exports = {
         res.render('inscription');
     },
 
-    sub: async function (req, res) {
+    sub: function (req, res) {
         var request = new sql.Request(connection);
 
         const nom = req.sanitize(req.body.nom);
@@ -54,7 +52,6 @@ module.exports = {
         }
 
         idendification.verifUserUnique(mail, function(result) {
-            console.log('RESULT', result);
             if(result) {
                 bcrypt.hash(pwd, 5, function (err, bcryptedPassword) {
                     request.input('nom', nom);

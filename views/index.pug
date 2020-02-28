@@ -1,9 +1,11 @@
-include header
+
+if isConnected
+    include headerConnected
+else
+    include headerPublic
 
 block content
-
-    div.d-flex
-        div.d-flex.mr-2
+        div.d-flex
             nav.navbar.navbar-light.bg-light
                 ul.nav
                     div.col
@@ -11,30 +13,30 @@ block content
                             div.row
                                 li.nav-item
                                     a.nav-link(href='/' + sitePl.nomSitePl) #{sitePl.nomSitePl}
-        div.flex-fill
-            h2.bg-white Main content
-            cite.overflow-auto Le rognage se fera à la bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères,
-            | on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le contenu qui dépasse de la boîte englobante dans
-            | le sens de la progression en ligne. Par exemple, on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte. Le texte peut dépasser
-            | lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap) ou lorsqu'un seul mot est trop long pour tenir dans le conteneur.
-            | Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow soit appliqué, l'auteur devra ajouter des propriétés supplémentaires sur l'élément,
-            | notamment : overflow avec hidden et white-space avec nowrap Le rognage se fera à la bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères,
-            | on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le contenu qui dépasse de la boîte englobante dans le sens de la progression en ligne. Par exemple,
-            | on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte. Le texte peut dépasser lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap)
-            | ou lorsqu'un seul mot est trop long pour tenir dans le conteneur.Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow soit
-            | appliqué, l'auteur devra ajouter des propriétés supplémentaires sur l'élément, notamment : overflow avec hidden et white-space avec nowrap Le rognage se fera à la
-            | bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères, on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le
-            | contenu qui dépasse de la boîte englobante dans le sens de la progression en ligne. Par exemple, on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte.
-            | Le texte peut dépasser lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap) ou lorsqu'un seul mot est trop long pour tenir dans le
-            | conteneur.Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow soit appliqué, l'auteur devra ajouter des propriétés supplémentaires sur
-            | l'élément, notamment : overflow avec hidden et white-space avec nowrap Le rognage se fera à la bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères,
-            | on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le contenu qui dépasse de la boîte englobante dans le sens de la progression en ligne. Par exemple,
-            | on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte. Le texte peut dépasser lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap)
-            | ou lorsqu'un seul mot est trop long pour tenir dans le conteneur.Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow
-            | soit appliqué, l'auteur devra ajouter des propriétés supplémentaires sur l'élément, notamment : overflow avec hidden et white-space avec nowrap Le rognage se fera à la
-            | bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères, on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le
-            | contenu qui dépasse de la boîte englobante dans le sens de la progression en ligne. Par exemple, on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte.
-            | Le texte peut dépasser lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap) ou lorsqu'un seul mot est trop long pour tenir dans le conteneur.
-            | Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow soit appliqué, l'auteur devra ajouter des propriétés supplémentaires sur l'élément, notamment :
-            | overflow avec hidden et white-space avec nowrap
+            div.flex-fill
+                h2.bg-white Main content
+                cite.overflow-auto Le rognage se fera à la bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères,
+                | on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le contenu qui dépasse de la boîte englobante dans
+                | le sens de la progression en ligne. Par exemple, on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte. Le texte peut dépasser
+                | lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap) ou lorsqu'un seul mot est trop long pour tenir dans le conteneur.
+                | Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow soit appliqué, l'auteur devra ajouter des propriétés supplémentaires sur l'élément,
+                | notamment : overflow avec hidden et white-space avec nowrap Le rognage se fera à la bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères,
+                | on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le contenu qui dépasse de la boîte englobante dans le sens de la progression en ligne. Par exemple,
+                | on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte. Le texte peut dépasser lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap)
+                | ou lorsqu'un seul mot est trop long pour tenir dans le conteneur.Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow soit
+                | appliqué, l'auteur devra ajouter des propriétés supplémentaires sur l'élément, notamment : overflow avec hidden et white-space avec nowrap Le rognage se fera à la
+                | bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères, on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le
+                | contenu qui dépasse de la boîte englobante dans le sens de la progression en ligne. Par exemple, on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte.
+                | Le texte peut dépasser lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap) ou lorsqu'un seul mot est trop long pour tenir dans le
+                | conteneur.Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow soit appliqué, l'auteur devra ajouter des propriétés supplémentaires sur
+                | l'élément, notamment : overflow avec hidden et white-space avec nowrap Le rognage se fera à la bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères,
+                | on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le contenu qui dépasse de la boîte englobante dans le sens de la progression en ligne. Par exemple,
+                | on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte. Le texte peut dépasser lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap)
+                | ou lorsqu'un seul mot est trop long pour tenir dans le conteneur.Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow
+                | soit appliqué, l'auteur devra ajouter des propriétés supplémentaires sur l'élément, notamment : overflow avec hidden et white-space avec nowrap Le rognage se fera à la
+                | bordure de la boîte. Afin que le rognage se fasse plus tôt, à la limite des caractères, on peut utiliser la chaîne vide (''). Cette propriété n'affecte que le
+                | contenu qui dépasse de la boîte englobante dans le sens de la progression en ligne. Par exemple, on ne parle pas ici du texte qui dépasserait vers le bas d'une boîte.
+                | Le texte peut dépasser lorsqu'on empêche le retour automatique à la ligne (par exemple avec white-space: nowrap) ou lorsqu'un seul mot est trop long pour tenir dans le conteneur.
+                | Cette  propriété CSS ne force pas le dépassement. Pour ce faire et afin que text-overflow soit appliqué, l'auteur devra ajouter des propriétés supplémentaires sur l'élément, notamment :
+                | overflow avec hidden et white-space avec nowrap
 

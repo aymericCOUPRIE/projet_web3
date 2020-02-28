@@ -18,24 +18,34 @@ module.exports = {
         });
     },
 
-    creationToken: function (req, idUser, cb) {
+    creationToken: function (req, idUser) {
         tokenCtrl.generateTokenForUser(idUser, function (token) {
-            cb(req.cookie(nomToken, token, {expire: 3600000 + Date.now()}));
+            req.cookie(nomToken, token, {expire: 3600000 + Date.now()});
         });
+    },
+
+    deleteToken: function(req, res) {
+        console.log('TEST', req.cookies[nomToken]);
+        if(req.cookies[nomToken]) {
+            console.log('TEST2', req.cookies[nomToken]);
+            res.clearCookie(nomToken);
+        }
     },
 
     extractUserFromCookieToken: function(req, cb) {
         var token = req.cookies[nomToken];
-        if (token != null) {
-            tokenCtrl.get_key(token, function (result) {
-                jwt.verify(token, result, function (decoded) {
-                    if (decoded == undefined) {
-                        cb(decoded);
+        if (token != null && token != undefined) {
+            tokenCtrl.get_key(token, function (nomToken) {
+                jwt.verify(token, nomToken, function (err, decoded) {
+                    if (decoded != null) {
+                        cb(decoded.userId);
                     } else {
                         cb(0);
                     }
                 });
             });
+        } else {
+            cb(0);
         }
     }
 }

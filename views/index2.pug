@@ -1,19 +1,25 @@
-include header
+include headerConnected
 
 block content
-    div.d-flex
-        div.d-flex.mr-2
-            nav.navbar.navbar-light.bg-light
-                ul.nav
-                    div.col.p-4
-                        each sitePl in sitesPl
-                            div.row
-                                li.nav-item
-                                    a.nav-link(href='/' + sitePl.nomSitePl) #{sitePl.nomSitePl}
+    div.d-flex.min-vh-100.top
+        //SideBar
+        ul.nav.bg-light
+            div.col.align-top.p-4
+                each sitePl in sitesPl
+                    div.row
+                        li.nav-item
+                            a.nav-link(href='/' + sitePl.nomSitePl) #{sitePl.nomSitePl}
+
+        //infos sur le site
         div.flex-fill
             each siteInfos in sitesInfos
                 h1.text-center.m-3 #{siteInfos.nomSitePl}
                 p.ml-5 Profondeur : #{siteInfos.profondeurSitePl} mètres
                 p.ml-5.overflow-auto Description : #{siteInfos.descSitePl}
+
+        div
+            each image in images
+                img.m-5(src="/public/images/" + image.nomImg)
+
 
 
