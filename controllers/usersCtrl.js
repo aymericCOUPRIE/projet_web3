@@ -19,6 +19,10 @@ module.exports = {
         res.render('maps');
     },
 
+    planningDisplay: function(req, res) {
+        res.render('planning');
+    },
+
     selection: function (req, res) {
         var request = new sql.Request(connection);
         request.query('SELECT * FROM SitePlongee', function (err, data) {
