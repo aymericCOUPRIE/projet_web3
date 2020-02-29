@@ -39,7 +39,6 @@ module.exports = {
             request.input('pathname', pathname);
             request.query("SELECT * FROM SitePlongee WHERE nomSitePl = @pathname", function (err, dataInfo) {
                 affichageCarriere.getAllImages(dataInfo.recordset[0].idSitePl, function (result) {
-                    console.log(result);
                     res.render('index2', {sitesPl: data.recordset, sitesInfos: dataInfo.recordset, images: result.recordset});
                 })
             })

@@ -27,7 +27,6 @@ module.exports = {
     deleteToken: function(req, res) {
         console.log('TEST', req.cookies[nomToken]);
         if(req.cookies[nomToken]) {
-            console.log('TEST2', req.cookies[nomToken]);
             res.clearCookie(nomToken);
         }
     },

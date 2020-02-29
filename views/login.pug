@@ -1,17 +1,19 @@
-extends headerConnected
+extends headerPublic
 
 
 block content
+    div.container
+        div.row.mt-5
+            div.col-md-auto
+                h1.display-4.m-b-2 Formulaire d'inscription
 
-    body
-        p #{title}
-        form(action='/login', method='POST')
-            ul.nav.flex-column
-                li.nav-item
-                    input(name= 'mail', type='email', placeholder='mail' required=true)
-                li.nav-item
-                    input(name= 'pwd', type='password', placeholder='pwd' required=true)
-                li.nav-item
-                    button(type='submit') Submit
+                form(action='/login', method='POST')
+                    div.form-group
+                        label(for='mail') Mail:
+                        input#mail.form-control(type='email', placeholder='Mail...' name='mail' required=true)
+                    div.form-group
+                        label(for='pwd') Mot de passe:
+                        input#pwd.form-control(type='password', placeholder='Password' name='pwd' required=true)
+                    button.btn.btn-primary(type='submit') Valider
 
-        a(href="/login/inscription") Pas de compte ?
+                a(href="/login/inscription") Pas de compte ?
