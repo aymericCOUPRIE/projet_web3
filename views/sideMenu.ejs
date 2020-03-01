@@ -1,7 +1,8 @@
 <div class="d-flex min-vh-100">
-    <ul class="nav bg-light">
+    <ul class="nav bg-light" id="sideMenu">
         <div class=" col align-top p-4">
-            <input type="text" placeholder="Name..." class="w-100">
+            <input type="text" placeholder="Name..." class="w-100" id="nomSite" onkeyup="myFunction()">
+
             <% sitesPl.forEach( function (sitePl) { %>
                 <div class="row">
                     <li class="nav-item">
@@ -9,5 +10,29 @@
                     </li>
                 </div>
             <% });%>
+
         </div>
+
+        <script>
+            function myFunction() {
+                // Declare variables
+                var input, filter, ul, li, a, i, txtValue;
+                input = document.getElementById('nomSite');
+                filter = input.value.toUpperCase();
+                ul = document.getElementById("sideMenu");
+                li = ul.getElementsByTagName('li');
+
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < li.length; i++) {
+                    a = li[i].getElementsByTagName("a")[0];
+                    txtValue = a.textContent || a.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        li[i].style.display = "";
+                    } else {
+                        li[i].style.display = "none";
+                    }
+                }
+            }
+        </script>
+
     </ul>
