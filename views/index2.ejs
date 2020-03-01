@@ -1,0 +1,40 @@
+
+<%- include('headerConnected.ejs'); %>
+
+<div class="d-flex min-vh-100">
+    <ul class="nav bg-light">
+        <div class=" col align-top p-4">
+            <input type="text" placeholder="Name..." class="w-100">
+            <% sitesPl.forEach( function (sitePl) { %>
+                <div class="row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/carriere/"> <%= sitePl.nomSitePl %></a>
+                    </li>
+                </div>
+            <% });%>
+        </div>
+    </ul>
+
+    <div class="flex-fill m-5">
+        <h2> <%= sitesPl[0].nomSitePl %></h2>
+        <% sitesInfos.forEach( function (siteInfo) { %>
+            <ul class="col" style="list-style-type: none">
+                <li> Profondeur : <%= siteInfo.profondeurSitepl %></li>
+                <li> Description : <%= siteInfo.descSitePl %> </li>
+            </ul>
+        <% });%>
+
+        <div class="bg-info">
+            <% images.forEach( function (image) { %>
+                <img src="/public/images/photo_test.jpg">
+            <% });%>
+        </div>
+
+    </div>
+
+
+</div>
+
+<%- include('footer.ejs'); %>
+
+

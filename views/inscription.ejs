@@ -1,0 +1,32 @@
+
+<%- include('headerPublic.ejs') %>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-auto">
+            <h1 class="display-4 m-b-2">Formulaire d'inscription</h1>
+            <form method="POST" action="./inscription">
+                <div class="form-group mt-5">
+                    <label for="nom">Nom:</label>
+                    <input class="form-control" id="nom" type="text" placeholder="Nom..." name="nom" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prenom:</label>
+                    <input class="form-control" id="prenom" type="text" placeholder="Prenom..." name="prenom" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input class="form-control" id="email" type="email" placeholder="nom@email.com" name="email" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="dateNaissance">Date de naissance:</label>
+                    <input class="form-control" id="dateNaissance" type="date" placeholder="jj/mm/aaaa" name="dateNaissance" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="pswd">Password:</label>
+                    <input class="form-control" id="pswd" type="password" name="pswd" required="required" />
+                </div><button class="btn btn-primary" type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
+</div>

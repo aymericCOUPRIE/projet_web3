@@ -7,6 +7,7 @@ var url = require('url');
 
 module.exports = {
     accueil: function (req, res) {
+        console.log("TEST");
         identification.extractUserFromCookieToken(req, function (result) {
             var request = new sql.Request(connection);
             request.query('SELECT nomSitePl FROM SitePlongee', function (err, data) {
@@ -27,21 +28,6 @@ module.exports = {
         var request = new sql.Request(connection);
         request.query('SELECT * FROM SitePlongee', function (err, data) {
             res.render('index', {sitesPl: data.recordset});
-        });
-    },
-
-    choixCarriere: function(req, res) {
-        var request = new sql.Request(connection);
-        var pathname = url.parse(req.url).pathname;
-        pathname = pathname.replace('/', '');
-
-        request.query('SELECT * FROM SitePlongee', function (err, data) {
-            request.input('pathname', pathname);
-            request.query("SELECT * FROM SitePlongee WHERE nomSitePl = @pathname", function (err, dataInfo) {
-                affichageCarriere.getAllImages(dataInfo.recordset[0].idSitePl, function (result) {
-                    res.render('index2', {sitesPl: data.recordset, sitesInfos: dataInfo.recordset, images: result.recordset});
-                })
-            })
         });
     },
 

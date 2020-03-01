@@ -11,6 +11,6 @@ router.get('/home', home.accueil);
 router.get('/maps', home.mapsDisplay);
 router.get('/planning', home.planningDisplay);
 router.get('/deconnexion', home.deconnexion, home.accueil);
-router.get('/CarriereTest*', home.choixCarriere);
+//router.get('/CarriereTest*', home.choixCarriere);
 
 module.exports = router;
