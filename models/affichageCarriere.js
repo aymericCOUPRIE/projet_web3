@@ -13,4 +13,8 @@ module.exports = {
             }
         });
     },
+
+    getAllNoms: function (req, cb) {
+        var request = new sql.Request(connection);
+    }
 }

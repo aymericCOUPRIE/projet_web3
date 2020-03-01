@@ -1,26 +1,13 @@
 
 <%- include('headerConnected.ejs'); %>
-
-<div class="d-flex min-vh-100">
-    <ul class="nav bg-light">
-        <div class=" col align-top p-4">
-            <input type="text" placeholder="Name..." class="w-100">
-            <% sitesPl.forEach( function (sitePl) { %>
-                <div class="row">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/carriere/<%= sitePl.nomSitePl %>"> <%= sitePl.nomSitePl %></a>
-                    </li>
-                </div>
-            <% });%>
-        </div>
-    </ul>
+<%- include('sideMenu.ejs'); %>
 
     <div class="flex-fill m-5">
         <% sitesInfos.forEach( function (siteInfo) { %>
             <h2> <%= siteInfo.nomSitePl %></h2>
             <ul class="col" style="list-style-type: none">
-                <li> Profondeur : <%= siteInfo.profondeurSitepl %></li>
-                <li> Description : <%= siteInfo.descSitePl %> </li>
+                <li class="m-3"> - Profondeur : <%= siteInfo.profondeurSitePl %> mètres</li>
+                <li class="m-3"> - Description : <%= siteInfo.descSitePl %> </li>
             </ul>
         <% });%>
 
@@ -30,9 +17,21 @@
             <% });%>
         </div>
 
+        <div id="map" style="height: 50em; width: 100em">
+            <script>
+                var map = L.map('map').setView([<%= sitesInfos[0].longitude%>, <%= sitesInfos[0].latitude %>], 12);
+                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                    attribution: ' <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 18,
+                    id: 'mapbox/streets-v11',
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    accessToken: 'pk.eyJ1IjoiYXltZXJpY2NvdXByaWUiLCJhIjoiY2s3ODRvODRjMGJ4dTNsbnlzcDY1bG53ayJ9.zqdG6Rq16dnZuwFHpBbIew'
+                }).addTo(map);
+                var marker = L.marker([<%= sitesInfos[0].longitude%>, <%= sitesInfos[0].latitude %>]).addTo(map);
+            </script>
+        </div>
     </div>
-
-
 </div>
 
 <%- include('footer.ejs'); %>

@@ -4,12 +4,12 @@ var bcrypt = require('bcrypt');
 var idendification = require('../models/identification');
 
 module.exports = {
-    loginDisplay: function (req, res) {
+    loginDisplay: function (req, res, next) {
         idendification.extractUserFromCookieToken(req, function (data) {
             if(data == 0) {
                 res.render('login');
             } else {
-                res.redirect('/');
+                next();
             }
         });
     },

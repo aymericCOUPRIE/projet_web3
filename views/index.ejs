@@ -1,17 +1,8 @@
 
-<%- include('headerConnected.ejs'); %>
+<% if (!isConnected) { %>
+    <%- include('headerPublic.ejs'); %>
+<% } else { %>
+    <%- include('headerConnected.ejs'); %>
+<% }%>
 
-<div class="d-flex min-vh-100">
-    <ul class="nav bg-light">
-        <div class=" col align-top p-4">
-            <input type="text" placeholder="Name..." class="w-100">
-            <% sitesPl.forEach( function (sitePl) { %>
-                <div class="row">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/carriere/<%= sitePl.nomSitePl %>"> <%= sitePl.nomSitePl %></a>
-                    </li>
-                </div>
-            <% });%>
-        </div>
-    </ul>
-</div>
+    <%- include('sideMenu.ejs'); %>

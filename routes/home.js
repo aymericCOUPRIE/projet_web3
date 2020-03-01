@@ -5,8 +5,6 @@ var router = express.Router();
 var home = require('../controllers/usersCtrl');
 
 router.get('/', home.accueil);
-router.post('/', home.selection);
-
 router.get('/home', home.accueil);
 router.get('/maps', home.mapsDisplay);
 router.get('/planning', home.planningDisplay);
