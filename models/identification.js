@@ -25,7 +25,6 @@ module.exports = {
     },
 
     deleteToken: function(req, res) {
-        console.log('TEST', req.cookies[nomToken]);
         if(req.cookies[nomToken]) {
             res.clearCookie(nomToken);
         }
@@ -46,5 +45,36 @@ module.exports = {
         } else {
             cb(0);
         }
-    }
+    },
+
+    getUserWithMail: function (req, cb) {
+        var request = new sql.Request(connection);
+        request.input('mail', req);
+        request.query("SELECT * FROM Users Where mailUser = @mail", function (err, result) {
+            if(err) {
+                console.log(err);
+            } else {
+                cb(result)
+            }
+        });
+    },
+
+    insertUser: function (req, cb) {
+        var request = new sql.Request(connection);
+
+        request.input('nom', req[0]);
+        request.input('prenom', req[1]);
+        request.input('mail', req[2]);
+        request.input('dateNaissance', req[3]);
+        request.input('pwd', req[4]);
+
+        request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance)", function (err, result) {
+            if(err) {
+                console.log(err);
+            } else {
+                cb(result);
+            }
+        });
+
+    },
 }

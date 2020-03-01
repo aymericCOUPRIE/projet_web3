@@ -1,21 +1,17 @@
-var connection = require('../config/db');
-var sql = require('mssql/msnodesqlv8');
 var affichageCarriere = require('../models/affichageCarriere');
 var url = require('url');
 
 module.exports = {
     display: function(req, res) {
-        var request = new sql.Request(connection);
         var pathname = url.parse(req.url).pathname;
         pathname = pathname.replace('/', '');
 
-        request.query('SELECT * FROM SitePlongee', function (err, data) {
-            request.input('pathname', pathname);
-            request.query("SELECT * FROM SitePlongee WHERE nomSitePl = @pathname", function (err, dataInfo) {
-                affichageCarriere.getAllImages(dataInfo.recordset[0].idSitePl, function (result) {
-                    res.render('presentationCarriere', {sitesPl: data.recordset, sitesInfos: dataInfo.recordset, images: result.recordset});
-                })
-            })
+        affichageCarriere.getAllNoms(req, function(nomsSites) {
+            affichageCarriere.getAllInfos(pathname, function (sitesInfos) {
+                affichageCarriere.getAllImages(sitesInfos.recordset[0].idSitePl, function (images) {
+                    res.render('presentationCarriere', {sitesPl: nomsSites.recordset, sitesInfos: sitesInfos.recordset, images: images.recordset});
+                });
+            });
         });
     },
-}
+};

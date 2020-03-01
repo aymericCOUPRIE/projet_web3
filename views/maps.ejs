@@ -1,6 +1,6 @@
 
 <%- include('headerConnected.ejs'); %>
-
+<%- include('sideMenu.ejs') %>
 
 <div class="container align-content-center">
     <div id="map" style="height: 50em">
@@ -14,7 +14,6 @@
                 zoomOffset: -1,
                 accessToken: 'pk.eyJ1IjoiYXltZXJpY2NvdXByaWUiLCJhIjoiY2s3ODRvODRjMGJ4dTNsbnlzcDY1bG53ayJ9.zqdG6Rq16dnZuwFHpBbIew'
             }).addTo(map);
-
 
             <% coords.forEach( function (coord) { %>
                 var marker = L.marker([<%= coord.longitude %>, <%= coord.latitude %>]).addTo(map);

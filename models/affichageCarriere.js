@@ -7,7 +7,7 @@ module.exports = {
         request.input('idCarriere', req);
         request.query("SELECT * FROM Images WHERE idSitePl = @idCarriere", function (err, result) {
             if(err) {
-                console.log(err)
+                console.log(err);
             } else {
                 cb(result);
             }
@@ -16,5 +16,24 @@ module.exports = {
 
     getAllNoms: function (req, cb) {
         var request = new sql.Request(connection);
+        request.query("SELECT nomSitePl FROM sitePlongee", function(err, result) {
+           if(err) {
+               console.log(err);
+           } else {
+               cb(result);
+           }
+        });
+    },
+
+    getAllInfos: function (req, cb) {
+        var request = new sql.Request(connection);
+        request.input('name', req);
+        request.query("SELECT * FROM sitePlongee WHERE nomSitePl = @name", function (err, result) {
+            if (err) {
+                console.log(err)
+            } else {
+                cb(result);
+            }
+        });
     }
 }
