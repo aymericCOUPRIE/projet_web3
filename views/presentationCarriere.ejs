@@ -8,7 +8,7 @@
             <% sitesPl.forEach( function (sitePl) { %>
                 <div class="row">
                     <li class="nav-item">
-                        <a class="nav-link" href="/carriere/"> <%= sitePl.nomSitePl %></a>
+                        <a class="nav-link" href="/carriere/<%= sitePl.nomSitePl %>"> <%= sitePl.nomSitePl %></a>
                     </li>
                 </div>
             <% });%>
@@ -16,8 +16,8 @@
     </ul>
 
     <div class="flex-fill m-5">
-        <h2> <%= sitesPl[0].nomSitePl %></h2>
         <% sitesInfos.forEach( function (siteInfo) { %>
+            <h2> <%= siteInfo.nomSitePl %></h2>
             <ul class="col" style="list-style-type: none">
                 <li> Profondeur : <%= siteInfo.profondeurSitepl %></li>
                 <li> Description : <%= siteInfo.descSitePl %> </li>
