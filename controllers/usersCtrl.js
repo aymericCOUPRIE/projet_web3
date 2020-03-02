@@ -40,6 +40,12 @@ module.exports = {
         gestionCarriere.deleteCarriere(req.body.test, function (infos) {
             next();
         });
-    }
+    },
+
+    ajoutSite: function (req, res) {
+        console.log("test");
+        res.render('ajoutSite');
+    },
+
 }
 

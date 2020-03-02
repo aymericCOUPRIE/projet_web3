@@ -10,11 +10,13 @@
                     </li>
                     <% if(droits == 2) { %>
                         <form method="POST" action="./?_method=DELETE">
-                            <button class="btn btn-primary-outline text-danger" style="font-weight: bold" name="test" value="<%= sitePl.nomSitePl %>"> - </button>
+                            <button class="btn btn-primary-outline text-danger" name="test" value="<%= sitePl.nomSitePl %>"> (Supprimer) </button>
                         </form>
                     <% } %>
                 </div>
             <% });%>
+
+            <a class="nav-link" href="/ajoutSite"> Ajout </a>
 
         </div>
 
