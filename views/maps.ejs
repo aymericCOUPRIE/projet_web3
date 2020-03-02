@@ -1,6 +1,10 @@
+<% if (isConnected == 0) { %>
+    <%- include('headerPublic.ejs'); %>
+<% } else { %>
+    <%- include('headerConnected.ejs'); %>
+<% }%>
 
-<%- include('headerConnected.ejs'); %>
-<%- include('sideMenu.ejs') %>
+<%- include('sideMenu.ejs'); %>
 
 <div class="container align-content-center">
     <div id="map" style="height: 50em">

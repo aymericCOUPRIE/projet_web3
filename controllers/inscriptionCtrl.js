@@ -20,8 +20,8 @@ module.exports = {
             bcrypt.compare(pwd, infosUsers.recordset[0].passwordUser, function (err, match) {
                 idendification.extractUserFromCookieToken(req, function (result) {
                     if(match && result == 0) {
-                        var idUser = infosUsers.recordset[0].idUser;
-                        idendification.creationToken(res, idUser);
+                        //var idUser = infosUsers.recordset[0].idUser;
+                        idendification.creationToken(res, infosUsers);
                     }
                     next();
                 });

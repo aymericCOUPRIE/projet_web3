@@ -16,7 +16,7 @@ module.exports = {
 
     getAllNoms: function (req, cb) {
         var request = new sql.Request(connection);
-        request.query("SELECT nomSitePl FROM sitePlongee", function(err, result) {
+        request.query("SELECT nomSitePl FROM sitePlongee ORDER BY nomSitePl", function(err, result) {
            if(err) {
                console.log(err);
            } else {
@@ -31,6 +31,18 @@ module.exports = {
         request.query("SELECT * FROM sitePlongee WHERE nomSitePl = @name", function (err, result) {
             if (err) {
                 console.log(err)
+            } else {
+                cb(result);
+            }
+        });
+    },
+
+    deleteCarriere: function (req, cb) {
+        var request = new sql.Request(connection);
+        request.input("nomSite", req);
+        request.query("DELETE FROM SitePlongee WHERE nomSitePl = @nomSite", function (err, result) {
+            if(err) {
+                console.log(err);
             } else {
                 cb(result);
             }

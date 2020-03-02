@@ -18,8 +18,8 @@ module.exports = {
         });
     },
 
-    creationToken: function (req, idUser) {
-        tokenCtrl.generateTokenForUser(idUser, function (token) {
+    creationToken: function (req, infosUser) {
+        tokenCtrl.generateTokenForUser(infosUser, function (token) {
             req.cookie(nomToken, token, {expire: 3600000 + Date.now()});
         });
     },
@@ -36,14 +36,14 @@ module.exports = {
             tokenCtrl.get_key(token, function (nomToken) {
                 jwt.verify(token, nomToken, function (err, decoded) {
                     if (decoded != null) {
-                        cb(decoded.userId);
+                        cb(decoded.userId, decoded.droitsUser);
                     } else {
-                        cb(0);
+                        cb(0, 0);
                     }
                 });
             });
         } else {
-            cb(0);
+            cb(0, 0);
         }
     },
 
@@ -53,8 +53,10 @@ module.exports = {
         request.query("SELECT * FROM Users Where mailUser = @mail", function (err, result) {
             if(err) {
                 console.log(err);
+            } else if (result.recordset[0] == null) {
+                cb(null);
             } else {
-                cb(result)
+                cb(result);
             }
         });
     },
@@ -68,7 +70,7 @@ module.exports = {
         request.input('dateNaissance', req[3]);
         request.input('pwd', req[4]);
 
-        request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance)", function (err, result) {
+        request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser, droitsUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance, 0)", function (err, result) {
             if(err) {
                 console.log(err);
             } else {

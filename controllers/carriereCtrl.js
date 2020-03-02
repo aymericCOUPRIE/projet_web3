@@ -1,4 +1,5 @@
-var affichageCarriere = require('../models/affichageCarriere');
+var affichageCarriere = require('../models/gestionCarriere');
+var identification = require('../models/identification');
 var url = require('url');
 
 module.exports = {
@@ -9,7 +10,9 @@ module.exports = {
         affichageCarriere.getAllNoms(req, function(nomsSites) {
             affichageCarriere.getAllInfos(pathname, function (sitesInfos) {
                 affichageCarriere.getAllImages(sitesInfos.recordset[0].idSitePl, function (images) {
-                    res.render('presentationCarriere', {sitesPl: nomsSites.recordset, sitesInfos: sitesInfos.recordset, images: images.recordset});
+                    identification.extractUserFromCookieToken(req, function(id, droits) {
+                        res.render('presentationCarriere', {sitesPl: nomsSites.recordset, sitesInfos: sitesInfos.recordset, images: images.recordset, isConnected: id, droits:droits});
+                    })
                 });
             });
         });

@@ -8,6 +8,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/carriere/<%= sitePl.nomSitePl %>"> <%= sitePl.nomSitePl %></a>
                     </li>
+                    <% if(droits == 2) { %>
+                        <form method="POST" action="./?_method=DELETE">
+                            <button class="btn btn-primary-outline text-danger" style="font-weight: bold" name="test" value="<%= sitePl.nomSitePl %>"> - </button>
+                        </form>
+                    <% } %>
                 </div>
             <% });%>
 

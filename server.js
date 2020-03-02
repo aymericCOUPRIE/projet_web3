@@ -7,6 +7,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 var app = express();
 
@@ -26,6 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sanitizer());
 app.use("/public", express.static(path.join(__dirname, '/public')));
+app.use(methodOverride('_method', { methods: ['POST'] }));
+
+app.use(methodOverride('_method'));
 
 app.use('/', routes);
 app.use('/login', user);
