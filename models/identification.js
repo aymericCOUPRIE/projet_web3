@@ -20,13 +20,13 @@ module.exports = {
 
     creationToken: function (req, infosUser) {
         tokenCtrl.generateTokenForUser(infosUser, function (token) {
-            req.cookie(nomToken, token, {expire: 3600000 + Date.now()});
+            return (req.cookie(nomToken, token, {expire: 3600000 + Date.now()}));
         });
     },
 
     deleteToken: function(req, res) {
         if(req.cookies[nomToken]) {
-            res.clearCookie(nomToken);
+            return (res.clearCookie(nomToken));
         }
     },
 
@@ -50,7 +50,7 @@ module.exports = {
     getUserWithMail: function (req, cb) {
         var request = new sql.Request(connection);
         request.input('mail', req);
-        request.query("SELECT * FROM Users Where mailUser = @mail", function (err, result) {
+        request.query("SELECT * FROM Users WHERE mailUser = @mail", function (err, result) {
             if(err) {
                 console.log(err);
             } else if (result.recordset[0] == null) {
@@ -70,7 +70,7 @@ module.exports = {
         request.input('dateNaissance', req[3]);
         request.input('pwd', req[4]);
 
-        request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser, droitsUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance, 0)", function (err, result) {
+        request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser, droitsUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance, 1)", function (err, result) {
             if(err) {
                 console.log(err);
             } else {
@@ -79,4 +79,8 @@ module.exports = {
         });
 
     },
+
+    getNomToken: function (req, cb) {
+        cb(nomToken);
+    }
 }

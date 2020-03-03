@@ -6,8 +6,8 @@ var gestionMaps = require('../models/gestionMaps');
 module.exports = {
     accueil: function (req, res) {
         identification.extractUserFromCookieToken(req, function (id, droits) {
-            gestionCarriere.getAllNoms(req, function (nomSites) {
-                res.render('index', {sitesPl: nomSites.recordset, isConnected: id, droits: droits });
+            gestionCarriere.getAllNomsAndDesc(req, function (infosSites) {
+                res.render('index', {sitesPl: infosSites.recordset, isConnected: id, droits: droits });
             });
         });
     },
@@ -32,20 +32,8 @@ module.exports = {
     },
 
     deconnexion: async function (req, res, next) {
-        await identification.deleteToken(req, res);
-        next();
+        identification.deleteToken(req, res);
+        res.redirect('/');
     },
-
-    deleteCarriere: function (req, res, next) {
-        gestionCarriere.deleteCarriere(req.body.test, function (infos) {
-            next();
-        });
-    },
-
-    ajoutSite: function (req, res) {
-        console.log("test");
-        res.render('ajoutSite');
-    },
-
 }
 

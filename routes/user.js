@@ -5,7 +5,7 @@ var router = express.Router();
 var register = require('../controllers/inscriptionCtrl');
 var home = require('../controllers/usersCtrl');
 
-router.get('/', register.loginDisplay, home.accueil);
+router.get('/', register.loginDisplay);
 router.post('/', register.loginVerif, register.loginDisplay);
 
 router.get('/inscription', register.subscribe);

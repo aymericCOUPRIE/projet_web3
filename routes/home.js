@@ -9,8 +9,6 @@ router.get('/', home.accueil);
 router.get('/home', home.accueil);
 router.get('/maps', home.mapsDisplay);
 router.get('/planning', home.planningDisplay);
-router.get('/deconnexion', home.deconnexion, home.accueil);
-router.get('/ajoutSite', home.ajoutSite);
-router.delete('/', home.deleteCarriere, home.accueil);
+router.get('/deconnexion', home.deconnexion);
 
 module.exports = router;

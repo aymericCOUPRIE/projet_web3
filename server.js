@@ -14,6 +14,7 @@ var app = express();
 var routes = require('./routes/home');
 var user = require('./routes/user');
 var carriere = require('./routes/carriere');
+var admin = require('./routes/admin');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,6 +35,7 @@ app.use(methodOverride('_method'));
 app.use('/', routes);
 app.use('/login', user);
 app.use('/carriere', carriere);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

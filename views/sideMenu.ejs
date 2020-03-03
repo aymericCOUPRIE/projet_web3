@@ -4,39 +4,41 @@
             <input type="text" placeholder="Name..." class="w-100" id="nomSite" onkeyup="myFunction()">
 
             <% sitesPl.forEach( function (sitePl) { %>
-                <div class="row">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/carriere/<%= sitePl.nomSitePl %>"> <%= sitePl.nomSitePl %></a>
-                    </li>
-                    <% if(droits == 2) { %>
-                        <form method="POST" action="./?_method=DELETE">
-                            <button class="btn btn-primary-outline text-danger" name="test" value="<%= sitePl.nomSitePl %>"> (Supprimer) </button>
-                        </form>
-                    <% } %>
-                </div>
+            <div class="row">
+                <li class="nav-item">
+                    <a class="nav-link" href="/carriere/<%= sitePl.nomSitePl %>"> <%= sitePl.nomSitePl %></a>
+                </li>
+                <% if(droits == 2) { %>
+                    <form method="POST" action="./admin/?_method=DELETE">
+                        <button class="btn btn-primary-outline text-danger" name="test" value="<%= sitePl.nomSitePl %>"> (Supprimer) </button>
+                    </form>
+                <% } %>
+            </div>
             <% });%>
-
-            <a class="nav-link" href="/ajoutSite"> Ajout </a>
 
         </div>
 
         <script>
             function myFunction() {
                 // Declare variables
-                var input, filter, ul, li, a, i, txtValue;
+                var input, filter, ul, li, a, i, txtValue, button;
                 input = document.getElementById('nomSite');
                 filter = input.value.toUpperCase();
                 ul = document.getElementById("sideMenu");
                 li = ul.getElementsByTagName('li');
+                button = ul.getElementsByTagName('button');
 
                 // Loop through all list items, and hide those who don't match the search query
                 for (i = 0; i < li.length; i++) {
                     a = li[i].getElementsByTagName("a")[0];
+                    //b = li[i].getElementsByTagName("button")[0];
                     txtValue = a.textContent || a.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
                         li[i].style.display = "";
+                        button[i].style.display = "";
                     } else {
                         li[i].style.display = "none";
+                        button[i].style.display = "none";
                     }
                 }
             }

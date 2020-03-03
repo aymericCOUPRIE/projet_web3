@@ -3,16 +3,16 @@ var idendification = require('../models/identification');
 
 module.exports = {
     loginDisplay: function (req, res, next) {
-        idendification.extractUserFromCookieToken(req, function (data) {
-            if(data == 0) {
-                res.render('login');
+        idendification.extractUserFromCookieToken(req, function (id, droits) {
+            if(id == 0) {
+                res.render('login', {isConnected: id, droits: droits});
             } else {
-                next();
+                res.redirect('/');
             }
         });
     },
 
-    loginVerif: function (req, res , next) {
+    loginVerif: function (req, res) {
         var mail = req.sanitize(req.body.mail);
         var pwd = req.sanitize(req.body.pwd);
 
@@ -20,17 +20,21 @@ module.exports = {
             bcrypt.compare(pwd, infosUsers.recordset[0].passwordUser, function (err, match) {
                 idendification.extractUserFromCookieToken(req, function (result) {
                     if(match && result == 0) {
-                        //var idUser = infosUsers.recordset[0].idUser;
                         idendification.creationToken(res, infosUsers);
+                        res.redirect('/');
+                    } else {
+                        res.redirect('/login');
                     }
-                    next();
+
                 });
             });
         });
     },
 
     subscribe: function (req, res) {
-        res.render('inscription');
+        idendification.extractUserFromCookieToken(req, function (id, droits) {
+            res.render('inscription', {isConnected: id, droits: droits});
+        });
     },
 
     sub: function (req, res) {

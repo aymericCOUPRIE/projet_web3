@@ -1,8 +1,21 @@
 
-<% if (isConnected == 0) { %>
-    <%- include('headerPublic.ejs'); %>
-<% } else { %>
-    <%- include('headerConnected.ejs'); %>
-<% }%>
+<%- include('headerConnected.ejs'); %>
+<%- include('sideMenu.ejs'); %>
 
-    <%- include('sideMenu.ejs'); %>
+<div class="container" style="min-width: 80%">
+    <div class="row w-100">
+        <% sitesPl.forEach( function (sitePl) { %>
+        <div class="w-100 bg-light m-5" style="height: 10em">
+            <table class="border-dark" border="2">
+                <td class="w-100 align-text-top p-2" >
+                    <h2> <%= sitePl.nomSitePl %> </h2>
+                    <p> Description : <%= sitePl.descSitePl %> </p>
+                </td>
+                <td style="align-content: center">
+                    <img src="public/images/photo_test.jpg" style="max-height: 9.6em; max-width: inherit">
+                </td>
+            </table>
+        </div>
+        <% }); %>
+    </div>
+</div>

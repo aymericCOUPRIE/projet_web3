@@ -25,6 +25,17 @@ module.exports = {
         });
     },
 
+    getAllNomsAndDesc: function(req, cb) {
+        var request = new sql.Request(connection);
+        request.query("SELECT nomSitePl, descSitePl FROM sitePlongee ORDER BY nomSitePl", function(err, result) {
+            if(err) {
+                console.log(err);
+            } else {
+                cb(result);
+            }
+        });
+    },
+
     getAllInfos: function (req, cb) {
         var request = new sql.Request(connection);
         request.input('name', req);
@@ -47,5 +58,40 @@ module.exports = {
                 cb(result);
             }
         });
+    },
+
+    verifSiteUnique: function (req, cb) {
+        var request = new sql.Request(connection);
+        request.input('nom', req);
+        request.query("SELECT nomSitePl FROM SitePlongee WHERE nomSitePl = @nom", function (err, result) {
+            if(err) {
+                console.log(err)
+            } else {
+                console.log(result.recordset[0] == null);
+                if(result.recordset[0] == null) {
+                    cb(0);
+                } else {
+                    cb(1);
+                }
+            }
+        });
+    },
+
+    ajoutSite: function (req, cb) {
+        var request = new sql.Request(connection);
+
+        request.input('nom', req[0]);
+        request.input('profondeur', req[1]);
+        request.input('longitude', req[2]);
+        request.input('latitude', req[3]);
+        request.input('description', req[4]);
+
+        request.query("INSERT INTO sitePlongee (nomSitePl, profondeurSitePl, longitude, latitude, descSitePl) VALUES (@nom, @profondeur, @longitude, @latitude, @description)", function (err, result ) {
+            if(err) {
+                console.log(err);
+            } else {
+                cb(result);
+            }
+        })
     }
 }
