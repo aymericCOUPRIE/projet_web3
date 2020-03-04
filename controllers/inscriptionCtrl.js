@@ -5,7 +5,7 @@ module.exports = {
     loginDisplay: function (req, res, next) {
         idendification.extractUserFromCookieToken(req, function (id, droits) {
             if(id == 0) {
-                res.render('login', {isConnected: id, droits: droits});
+                res.render('pages/login/login', {isConnected: id, droits: droits});
             } else {
                 res.redirect('/');
             }
@@ -33,7 +33,7 @@ module.exports = {
 
     subscribe: function (req, res) {
         idendification.extractUserFromCookieToken(req, function (id, droits) {
-            res.render('inscription', {isConnected: id, droits: droits});
+            res.render('pages/login/inscription', {isConnected: id, droits: droits});
         });
     },
 

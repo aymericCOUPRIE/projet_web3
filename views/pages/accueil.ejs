@@ -1,6 +1,6 @@
 
-<%- include('headerConnected.ejs'); %>
-<%- include('sideMenu.ejs'); %>
+<%- include('../layouts/header.ejs'); %>
+<%- include('../layouts/sideMenu.ejs'); %>
 
 <div class="container" style="min-width: 80%">
     <div class="row w-100">
@@ -12,10 +12,12 @@
                     <p> Description : <%= sitePl.descSitePl %> </p>
                 </td>
                 <td style="align-content: center">
-                    <img src="public/images/photo_test.jpg" style="max-height: 9.6em; max-width: inherit">
+                    <img src="../../public/images/photo_test.jpg" style="max-height: 9.6em; max-width: inherit">
                 </td>
             </table>
         </div>
         <% }); %>
     </div>
 </div>
+
+<%- include('../layouts/footer.ejs'); %>

@@ -6,7 +6,7 @@ var url = require('url');
 module.exports = {
     afficheFormulaire: function (req, res) {
         identification.extractUserFromCookieToken(req, function (id, droits) {
-            res.render('ajoutSite', { isConnected: id, droits: droits });
+            res.render('pages/admin/ajoutSite', { isConnected: id, droits: droits });
         });
     },
 
@@ -44,7 +44,7 @@ module.exports = {
             var pathname = url.parse(req.url).pathname;
             pathname = pathname.split('/')[2];
             gestionCarriere.getAllInfos(pathname, function (result) {
-                res.render('updateSite', {sitesInfos: result.recordset[0], isConnected: id, droits: droits });
+                res.render('pages/admin/updateSite', {sitesInfos: result.recordset[0], isConnected: id, droits: droits });
             })
         });
     },
@@ -65,12 +65,11 @@ module.exports = {
 
         gestionCarriere.verifSiteUnique(nom, function (result) {
             if(result) {
-                console.log("LE NOM EXISTE DEJA EN BASE");
+                console.log("ERROR : LE NOM EXISTE DEJA EN BASE");
             } else {
                 gestionCarriere.updateSite(sitesInfos);
             }
-        })
-        console.log("MODIFICATION");
+        });
         res.redirect('/');
     },
 

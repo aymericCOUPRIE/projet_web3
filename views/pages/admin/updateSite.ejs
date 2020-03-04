@@ -1,11 +1,11 @@
 
-<%- include('headerConnected.ejs'); %>
+<%- include('../../layouts/header.ejs'); %>
 
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-auto">
             <h1 class="display-4 m-b-2"><%=sitesInfos.nomSitePl %></h1>
-            <form method="POST" action="./?_method=PUT">
+            <form method="POST" action="../../../..?_method=PUT">
                 <div class="form-group mt-5">
                     <label for="nomSite"> nomSite </label>
                     <input class="form-control" id="nomSite" type="text" value="<%=sitesInfos.nomSitePl %>" name="nomSite" required="required" />
@@ -34,3 +34,5 @@
         </div>
     </div>
 </div>
+
+<%- include('../../layouts/footer.ejs'); %>

@@ -11,7 +11,7 @@ module.exports = {
             affichageCarriere.getAllInfos(pathname, function (sitesInfos) {
                 affichageCarriere.getAllImages(sitesInfos.recordset[0].idSitePl, function (images) {
                     identification.extractUserFromCookieToken(req, function(id, droits) {
-                        res.render('presentationCarriere', {sitesPl: nomsSites.recordset, sitesInfos: sitesInfos.recordset, images: images.recordset, isConnected: id, droits:droits});
+                        res.render('pages/presentationCarriere', {sitesPl: nomsSites.recordset, sitesInfos: sitesInfos.recordset, images: images.recordset, isConnected: id, droits:droits});
                     })
                 });
             });

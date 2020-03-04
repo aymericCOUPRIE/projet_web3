@@ -7,7 +7,7 @@ module.exports = {
     accueil: function (req, res) {
         identification.extractUserFromCookieToken(req, function (id, droits) {
             gestionCarriere.getAllNomsAndDesc(req, function (infosSites) {
-                res.render('index', {sitesPl: infosSites.recordset, isConnected: id, droits: droits });
+                res.render('pages/accueil', {sitesPl: infosSites.recordset, isConnected: id, droits: droits });
             });
         });
     },
@@ -16,7 +16,7 @@ module.exports = {
         gestionMaps.getAllCoords(req, function(coords) {
             gestionCarriere.getAllNoms(req, function (nomSites) {
                 identification.extractUserFromCookieToken(req, function (id, droits) {
-                    res.render('maps', {
+                    res.render('pages/maps', {
                         coords: coords.recordset,
                         sitesPl: nomSites.recordset,
                         isConnected: id,
@@ -28,7 +28,7 @@ module.exports = {
     },
 
     planningDisplay: function(req, res) {
-        res.render('planning');
+        res.render('pages/planning');
     },
 
     deconnexion: async function (req, res, next) {

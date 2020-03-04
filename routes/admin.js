@@ -10,7 +10,7 @@ router.use( function (req,res, next) {
         if(result) {
             next();
         } else {
-            console.log("VOUS N'ETES PAS ADMIN");
+            console.log("ERROR : VOUS N'ETES PAS ADMIN");
             res.redirect('/');
         }
     });
