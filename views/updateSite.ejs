@@ -1,34 +1,35 @@
 
 <%- include('headerConnected.ejs'); %>
 
-
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-auto">
-            <h1 class="display-4 m-b-2">Ajout d'un site de plongée</h1>
-            <form method="POST" action="./admin/ajoutSite">
+            <h1 class="display-4 m-b-2"><%=sitesInfos.nomSitePl %></h1>
+            <form method="POST" action="./?_method=PUT">
                 <div class="form-group mt-5">
                     <label for="nomSite"> nomSite </label>
-                    <input class="form-control" id="nomSite" type="text" placeholder="NomSite..." name="nomSite" required="required" />
+                    <input class="form-control" id="nomSite" type="text" value="<%=sitesInfos.nomSitePl %>" name="nomSite" required="required" />
                 </div>
                 <div class="form-group">
                     <label for="profondeur"> Profondeur </label>
-                    <input class="form-control" id="profondeur" type="number" step="any" placeholder="profondeur..." name="profondeur" required="required" />
+                    <input class="form-control" id="profondeur" type="number" step="any" value="<%=sitesInfos.profondeurSitePl %>" name="profondeur" required="required" />
                 </div>
                 <div class="form-group">
                     <label for="longitude"> Longitude </label>
-                    <input class="form-control" id="longitude" type="number" step="any" placeholder="longitude..." name="longitude" required="required" />
+                    <input class="form-control" id="longitude" type="number" step="any" value="<%=sitesInfos.longitude %>" name="longitude" required="required" />
                 </div>
                 <div class="form-group">
                     <label for="latitude"> Latitude </label>
-                    <input class="form-control" id="latitude" type="number" step="any" placeholder="latitude..." name="latitude" required="required" />
+                    <input class="form-control" id="latitude" type="number" step="any" value="<%=sitesInfos.latitude %>" name="latitude" required="required" />
                 </div>
                 <div class="form-group">
                     <label for="description"> Description </label>
-                    <textarea class="form-control" id="description" type="text" placeholder="description..." name="description" required="required"></textarea>
+                    <textarea class="form-control" id="description" type="text" name="description" required="required"> <%= sitesInfos.descSitePl %></textarea>
                 </div>
-                <button class="btn btn-primary" type="submit">Valider</button>
-
+                <button class="btn btn-primary" type="submit" value="" name="updateBtn">Valider</button>
+            </form>
+            <form  method="POST" action="/admin/supprimerSite/?_method=DELETE">
+                <button class="btn btn-danger " name="deleteBtn" value="<%=sitesInfos.nomSitePl %>"> Supprimer </button>
             </form>
         </div>
     </div>

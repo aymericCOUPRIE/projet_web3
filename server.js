@@ -5,9 +5,11 @@ var sanitizer = require('express-sanitizer');
 var path = require('path');
 //var favicon = require('serve-favicon');
 var logger = require('morgan');
+var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+const uploadImage = require('./helpers/helpers');
 
 var app = express();
 
@@ -15,6 +17,39 @@ var routes = require('./routes/home');
 var user = require('./routes/user');
 var carriere = require('./routes/carriere');
 var admin = require('./routes/admin');
+
+const multerMid = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+        fileSize: 5 * 1024 * 1024,
+    },
+});
+
+app.disable('x-powered-by');
+app.use(multerMid.single('file'));
+
+app.get('/uploads', function (req, res, next) {
+    console.log("TESST");
+});
+
+app.post('/uploads', async (req, res, next) => {
+    console.log("JE SUIS LA");
+    try {
+        const myFile = req.file
+        console.log("ARRIVE DANS LA REQUETE");
+        const imageUrl = await uploadImage(myFile)
+        res
+            .status(200)
+            .json({
+                message: "Upload was successful",
+                data: imageUrl
+            })
+    } catch (error) {
+        next(error)
+    }
+})
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

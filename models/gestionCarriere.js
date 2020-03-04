@@ -93,5 +93,18 @@ module.exports = {
                 cb(result);
             }
         })
+    },
+
+    updateSite: function (req, id, cb) {
+        var request = new sql.Request(connection);
+
+        request.query("UPDATE sitePlongee SET nomSitePl = @nom, profondeur = @profondeur, longitude = @longitude, latitude = @latitude, descSitePl = @desc WHERE idSitePl = @id", function (err, result) {
+            if(err) {
+                console.log(err)
+            } else {
+                cb(result);
+            }
+        });
+
     }
 }
