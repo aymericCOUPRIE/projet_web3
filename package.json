@@ -2,7 +2,7 @@
   "name": "projet_web",
   "version": "1.0.0",
   "engines": {
-    "node": "6.13.7"
+    "node": "13.8.0"
   },
   "main": "index.js",
   "scripts": {
