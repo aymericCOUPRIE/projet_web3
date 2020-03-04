@@ -1,5 +1,5 @@
 var connection = require('../config/db');
-var sql = require('mssql/msnodesqlv8');
+//var sql = require('mssql/msnodesqlv8');
 var tokenCtrl = require('../config/jwt');
 var jwt = require('jsonwebtoken');
 

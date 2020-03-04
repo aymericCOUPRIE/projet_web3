@@ -7,7 +7,8 @@ module.exports = {
     accueil: function (req, res) {
         identification.extractUserFromCookieToken(req, function (id, droits) {
             gestionCarriere.getAllNomsAndDesc(req, function (infosSites) {
-                res.render('pages/accueil', {sitesPl: infosSites.recordset, isConnected: id, droits: droits });
+                console.log(id, droits);
+                res.render('pages/accueil', {sitesPl: infosSites, isConnected: id, droits: droits });
             });
         });
     },
@@ -17,8 +18,8 @@ module.exports = {
             gestionCarriere.getAllNoms(req, function (nomSites) {
                 identification.extractUserFromCookieToken(req, function (id, droits) {
                     res.render('pages/maps', {
-                        coords: coords.recordset,
-                        sitesPl: nomSites.recordset,
+                        coords: coords,
+                        sitesPl: nomSites,
                         isConnected: id,
                         droits: droits
                     });
