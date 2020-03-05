@@ -36,5 +36,14 @@ module.exports = {
         identification.deleteToken(req, res);
         res.redirect('/');
     },
+
+    formImageDisplay: function (req, res) {
+        res.render('pages/testform');
+    },
+
+    uploadImage: function(req, res) {
+        //gestionUploadImg.
+    }
+
 }
 

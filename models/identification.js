@@ -1,5 +1,4 @@
 var connection = require('../config/db');
-//var sql = require('mssql/msnodesqlv8');
 var tokenCtrl = require('../config/jwt');
 var jwt = require('jsonwebtoken');
 
@@ -7,10 +6,8 @@ const nomToken = 'LOGING_TOKEN';
 
 module.exports = {
     verifUserUnique: function (mail, cb) {
-        var request = new sql.Request(connection);
-        request.input('mail', mail);
-        request.query("SELECT mailUser FROM Users WHERE mailUser = @mail", function (err, result) {
-            if(result.recordset[0] == null) {
+        connection.query("SELECT mailUser FROM Users WHERE mailUser = ?", [mail], function (err, result) {
+            if(result[0] == undefined) {
                 cb(1);
             } else {
                 cb(0);
@@ -47,13 +44,11 @@ module.exports = {
         }
     },
 
-    getUserWithMail: function (req, cb) {
-        var request = new sql.Request(connection);
-        request.input('mail', req);
-        request.query("SELECT * FROM Users WHERE mailUser = @mail", function (err, result) {
+    getUserWithMail: function (mail, cb) {
+        connection.query("SELECT * FROM Users WHERE mailUser = ?", [mail], function (err, result) {
             if(err) {
                 console.log(err);
-            } else if (result.recordset[0] == null) {
+            } else if (result == null) {
                 cb(null);
             } else {
                 cb(result);
@@ -62,15 +57,7 @@ module.exports = {
     },
 
     insertUser: function (req, cb) {
-        var request = new sql.Request(connection);
-
-        request.input('nom', req[0]);
-        request.input('prenom', req[1]);
-        request.input('mail', req[2]);
-        request.input('dateNaissance', req[3]);
-        request.input('pwd', req[4]);
-
-        request.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser, droitsUser) VALUES (@nom, @prenom, @mail, @pwd, @dateNaissance, 1)", function (err, result) {
+        connection.query("INSERT INTO Users (nomUser, prenomUser, mailUser, passwordUser, ageUser, droitsUser) VALUES (?, ?, ?, ?, ?, ?)  ", req, function (err, result) {
             if(err) {
                 console.log(err);
             } else {
