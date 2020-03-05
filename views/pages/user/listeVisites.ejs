@@ -1,0 +1,38 @@
+
+<%- include('../../layouts/header.ejs'); %>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-auto">
+            <h1 class="display-4 m-b-2"> Vos informations </h1>
+            <form method="POST" action="../../../../../../..?_method=PUT">
+                <div class="form-group mt-5">
+                    <label for="nomSite"> nomSite </label>
+                    <input class="form-control" id="nomSite" type="text" name="nomSite" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="profondeur"> Profondeur </label>
+                    <input class="form-control" id="profondeur" type="number" step="any" name="profondeur" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="longitude"> Longitude </label>
+                    <input class="form-control" id="longitude" type="number" step="any" name="longitude" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="latitude"> Latitude </label>
+                    <input class="form-control" id="latitude" type="number" step="any" name="latitude" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="description"> Description </label>
+                    <textarea class="form-control" id="description" type="text" name="description" required="required"> </textarea>
+                </div>
+                <button class="btn btn-primary" type="submit" value="" name="updateBtn">Valider</button>
+            </form>
+            <form  method="POST" action="/admin/supprimerSite/?_method=DELETE">
+                <button class="btn btn-danger " name="deleteBtn"> Supprimer </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../../layouts/footer.ejs'); %>

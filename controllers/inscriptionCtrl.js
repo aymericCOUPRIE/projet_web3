@@ -17,17 +17,21 @@ module.exports = {
         var pwd = req.sanitize(req.body.pwd);
 
         idendification.getUserWithMail(mail, function(infosUsers) {
-            bcrypt.compare(pwd, infosUsers[0].passwordUser, function (err, match) {
-                idendification.extractUserFromCookieToken(req, function (result) {
-                    if(match && result == 0) {
-                        idendification.creationToken(res, infosUsers);
-                        res.redirect('/');
-                    } else {
-                        res.redirect('/login');
-                    }
+            if(infosUsers[0].passwordUser != null) {
+                bcrypt.compare(pwd, infosUsers[0].passwordUser, function (err, match) {
+                    idendification.extractUserFromCookieToken(req, function (result) {
+                        if (match && result == 0) {
+                            idendification.creationToken(res, infosUsers);
+                            res.redirect('/');
+                        } else {
+                            res.redirect('/login');
+                        }
 
+                    });
                 });
-            });
+            } else {
+                res.redirect('/login');
+            }
         });
     },
 

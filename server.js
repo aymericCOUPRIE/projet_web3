@@ -20,6 +20,7 @@ var routes = require('./routes/home');
 var user = require('./routes/user');
 var carriere = require('./routes/carriere');
 var admin = require('./routes/admin');
+var profil = require('./routes/profil');
 
 
 // view engine setup
@@ -44,6 +45,7 @@ app.use('/', routes);
 app.use('/login', user);
 app.use('/carriere', carriere);
 app.use('/admin', admin);
+app.use('/profil', profil);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

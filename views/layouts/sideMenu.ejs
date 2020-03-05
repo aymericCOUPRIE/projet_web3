@@ -10,7 +10,9 @@
                 </li>
                 <% if(droits == 2) { %>
                     <a class="nav-link text-danger" href="/admin/modifierSite/<%= sitePl.nomSitePl %>"> Gérer</a>
-                <% } %>
+                <% } else if(droits == 1) { %>
+                    <a class="nav-link text-success" href="/profil/addToVisit/<%= sitePl.nomSitePl %>"> + </a>
+                <% }%>
             </div>
             <% });%>
 

@@ -2,12 +2,10 @@ var identification = require('../models/identification');
 var gestionCarriere = require('../models/gestionCarriere');
 var gestionMaps = require('../models/gestionMaps');
 
-
 module.exports = {
     accueil: function (req, res) {
         identification.extractUserFromCookieToken(req, function (id, droits) {
             gestionCarriere.getAllNomsAndDesc(req, function (infosSites) {
-                console.log(id, droits);
                 res.render('pages/accueil', {sitesPl: infosSites, isConnected: id, droits: droits });
             });
         });
@@ -28,10 +26,6 @@ module.exports = {
         });
     },
 
-    planningDisplay: function(req, res) {
-        res.render('pages/planning');
-    },
-
     deconnexion: async function (req, res, next) {
         identification.deleteToken(req, res);
         res.redirect('/');
@@ -41,9 +35,5 @@ module.exports = {
         res.render('pages/testform');
     },
 
-    uploadImage: function(req, res) {
-        //gestionUploadImg.
-    }
 
 }
-
