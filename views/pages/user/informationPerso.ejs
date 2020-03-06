@@ -5,12 +5,12 @@
     <div class="row mt-5">
         <div class="col-md-auto">
             <h1 class="display-4 m-b-2"> Vos informations </h1>
-            <form method="POST" action="/profil/updateInfos/?_method=PUT">
+            <form method="POST" action="/profil/updateInfos?_method=PUT">
                 <div class="row">
                     <div class="col">
                         <div class="form-group mt-5">
                             <label for="nomSite"> Nom </label>
-                            <input class="form-control" id="nom" type="text" name="nom" value="<%= userInfos.nomUser %>" required="required" />
+                            <input class="form-control" id="nom" type="text" value="<%= userInfos.nomUser %>" name="nom" required="required" />
                         </div>
                         <div class="form-group">
                             <label for="profondeur"> Prénom </label>
@@ -29,23 +29,21 @@
                         <ul style="list-style-type: none">
                             <% userCertifs.forEach( function (certif) { %>
                                 <li>
-                                    <% if(certif.idUser != null) {%>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="defaultChecked" checked="">
-                                            <label class="custom-control-label" for="defaultChecked"> <%= certif.labelNiv %> </label>
-                                        </div>
-                                    <% } else {%>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="defaultChecked">
-                                            <label class="custom-control-label" for="defaultChecked"> <%= certif.labelNiv %></label>
-                                        </div>
-                                    <% } %>
+                                    <div class="custom-control custom-checkbox">
+                                        <% if(certif.idUser != null) {%>
+                                                <input type="checkbox" id="defaultChecked" name="<%= certif.labelNiv%>" checked="">
+                                                <label> <%= certif.labelNiv %></label>
+                                        <% } else {%>
+                                                <input type="checkbox" id="defaultChecked">
+                                                <label> <%= certif.labelNiv %></label>
+                                        <% } %>
+                                    </div>
                                 </li>
                             <% });%>
                         </ul>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit" value="" name="updateBtn">Valider</button>
+                <button class="btn btn-primary" type="submit">Valider</button>
             </form>
             <form  method="POST" action="/profil/supprimerProfil/?_method=DELETE">
                 <button class="btn btn-danger " name="deleteBtn"> Supprimer </button>

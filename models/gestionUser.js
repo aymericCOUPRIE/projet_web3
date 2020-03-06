@@ -21,4 +21,14 @@ module.exports = {
         });
     },
 
+    getAllVisitUser: function (req, cb) {
+        connection.query("SELECT * FROM visite INNER JOIN sitePlongee ON idSitePl = idSite WHERE idUser = ? ORDER BY date ", req, function (err, result) {
+            if(err) {
+                console.log(err)
+            } else {
+                cb(result);
+            }
+        });
+    }
+
 };

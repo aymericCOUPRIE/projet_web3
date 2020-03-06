@@ -32,7 +32,11 @@ module.exports = {
     },
 
     getAllInfos: function (req, cb) {
-        connection.query("SELECT * FROM sitePlongee WHERE nomSitePl = ?", [req], function (err, result) {
+        connection.query("SELECT nomSitePl, profondeurSitePl, longitude, latitude, descSitePl, (\n" +
+                            "    SELECT ROUND(AVG(avis), 2) FROM visite WHERE idSite = (\n" +
+                            "        SELECT idSitePl FROM siteplongee WHERE nomSitePl = ?\n" +
+                            "    )\n" +
+                            ") as avgNote FROM sitePlongee WHERE nomSitePl = ?", [req, req], function (err, result) {
             if (err) {
                 console.log(err)
             } else {
@@ -56,8 +60,8 @@ module.exports = {
             if(err) {
                 console.log(err)
             } else {
-                console.log(result.recordset[0] == null);
-                if(result.recordset[0] == null) {
+                console.log(result[0] == null);
+                if(result[0] == null) {
                     cb(0);
                 } else {
                     cb(1);

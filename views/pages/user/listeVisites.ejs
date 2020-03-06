@@ -4,33 +4,32 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-auto">
-            <h1 class="display-4 m-b-2"> Vos informations </h1>
-            <form method="POST" action="../../../../../../..?_method=PUT">
-                <div class="form-group mt-5">
-                    <label for="nomSite"> nomSite </label>
-                    <input class="form-control" id="nomSite" type="text" name="nomSite" required="required" />
-                </div>
-                <div class="form-group">
-                    <label for="profondeur"> Profondeur </label>
-                    <input class="form-control" id="profondeur" type="number" step="any" name="profondeur" required="required" />
-                </div>
-                <div class="form-group">
-                    <label for="longitude"> Longitude </label>
-                    <input class="form-control" id="longitude" type="number" step="any" name="longitude" required="required" />
-                </div>
-                <div class="form-group">
-                    <label for="latitude"> Latitude </label>
-                    <input class="form-control" id="latitude" type="number" step="any" name="latitude" required="required" />
-                </div>
-                <div class="form-group">
-                    <label for="description"> Description </label>
-                    <textarea class="form-control" id="description" type="text" name="description" required="required"> </textarea>
-                </div>
-                <button class="btn btn-primary" type="submit" value="" name="updateBtn">Valider</button>
-            </form>
-            <form  method="POST" action="/admin/supprimerSite/?_method=DELETE">
-                <button class="btn btn-danger " name="deleteBtn"> Supprimer </button>
-            </form>
+            <h1 class="display-4 m-b-2"> Vos plongées </h1>
+            <% listVisit.forEach(function (visit) { %>
+                <form method="POST" action="/profil/updateNoteVisit/?_method=PUT">
+                    <div class="col m-5">
+                        <div class="container bg-light border p-3">
+                        <h3 type="date"> <%= moment(visit.date).format('DD/MM/YYYY')%></h3>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="/carriere/<%= visit.nomSitePl%>"> <%= visit.nomSitePl%> </a>
+                                </div>
+                                <div class="col">
+                                    <% if(visit.avis != null) { %>
+                                        <a> Notes : <%= visit.avis %> </a>
+                                    <% } else { %>
+                                        <a> Notes : </a>
+                                        <input type="number" step="1" max="5" min="0" onkeydown="return false" value="5" name="note">
+                                        <input type="hidden" name="nomSite" value="<%= visit.idSitePl%>">
+                                        <input type="hidden" name="dateV" value="<%= moment(visit.date).format('YYYY-MM-DD')%>">
+                                        <button type="submit"> Valider </button>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            <% }); %>
         </div>
     </div>
 </div>

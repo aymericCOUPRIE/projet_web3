@@ -16,11 +16,12 @@ router.use( function (req,res, next) {
 });
 
 router.get('/infosPerso', profil.infosPersonnellesDisplay);
-router.put('/infosPerso', profil.updateInfosPerso);
-//router.delete('/infosPerso', profil.deleteProfil);
+router.put('/updateInfos', profil.updateInfosPerso);
+
+router.get('/planning', profil.planningDisplay);
 
 router.get('/listeVisites', profil.listeVisiteDisplay);
-router.get('/planning', profil.planningDisplay);
-router.post('/addToVisit/*', profil.ajoutVisit);
+router.put('/updateNoteVisit/?*', profil.updateVisite);
+router.post('/addToVisit*', profil.ajoutVisit);
 
 module.exports = router;
