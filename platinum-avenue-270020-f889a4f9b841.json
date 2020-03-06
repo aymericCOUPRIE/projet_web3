@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "platinum-avenue-270020",
+  "private_key_id": "f889a4f9b8414a2998a62b114ef0503f071f358f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDEQ67+b668iw23\nPSMVZpbh2oR149s5nSdInsxYN08twlQDZyCaPuUApf2YF5AP5EdEW1Sn6OC8gqMP\nw099RAvOYMvDyRpjujzEBlwmztBo07lKtxirrRMYgwxk+lQXkioMR+0EQjvzWAlr\nCgIwcodzHLlU119Sb/jLZeC/xhxHhOTXqbhVzp/yc0JIpvOTsk0QriD9ABmTO4eD\nNIe3FAyMAu6iPmB5zBJpSeNYSx8Md0bX/Nsjn2CQHZZEFra7z9Vs0o4iV7Sc6Sds\nAvHzZ2ACmX11vVMlZCfDPfEnCBNFtTzgmEq6nnDYXLlgOOusR+Yp5xyHGLNSr/jS\n35BvPCI9AgMBAAECggEABIKRqOMkHs0LOaS8A6fh27rLxHHB/ebwmiicBYLv3NtU\nVuetxh2f4Y3u7+nKs7LJOHbo0Rr23x4ZZSlV0EkaBFoRFKSwaI5FCzQiNfoWq/IB\nlgfzFy7Y+303cbKW8Bu5v6J/fdOP0R26yaznM/nNxwVn9N0mIZzVGMd0jLOevr3y\nt5NsZa6476rVWmTYPJNmNaun3jmfq6GnmdBcII7RuxmcYIAq1MAEBX2yf3Mpc03g\nJOu6d0G3UieiJ22HK5kovELuVfg7u5cQdN9LawCdvtvnGmGASeFEdM8l8btCXF6z\ncz8OJ8GHHgufX8LmggL0j2/9aY8hUcBWiu49xV9cuQKBgQDxoKpWSeFRvLuy3oww\nNhLe/9K68+w8OZyk4RFty09MI5rv2ufKhg1rzbm913JfxpPswRix/AYcfVHwDozG\nUNlCmL/l36anAlfSAzPjfZ/kzEYi2Q+jZGUUO9RZo/ltLEpMrVJ96VGf9UhS84c9\ni59ro5SahoDJ3EgczUdTfu+EuwKBgQDP8EJcwk1prnJfRQOJqzLYS7IAEE2tiloA\nTSaC0Rb54Idcl6ZAzYYVhdpDOdmdMkjB/GUdbZowCXQ5PLt5PFSwgS0S2+xCVGXP\nIXTqCE1Nvrb4/c7j4AJrOqVMkXi0cPNMV5BbIOhgFqE/bq/vP1jT3vY7BkfebvwJ\ns94nPvsBZwKBgF/WQ/mZsB8FZsVZc+0jZXTBr0mrugVhLHpRMuKDg15FuQxtnQY9\nCVG69XMQ4zKNxtpe9HaT6bCfHELE4p0+MA40G9kHTkhrq32G+6u9hg/v3dmwkn1S\nMq1F1cIAQcxFhurGzDNYuaFiXl9YbEnC+WZuKWDo/GgUUR3rZeD+Ne5FAoGAASbY\nh0EAQsSXl5V/RoTvPCl3K+7rLznj87p5qyHTWcD3nvisEBHTW00pf1PTs74yjviB\n6t7PitKSlTqT40EFSxD8Ge2j6l4jTjlmN2GiY/rZcpmdSr/T45oojjsECyPRBSw6\n/XY6M0YM0JghW1bjfBDxFjSbs0y0Eq2vXlJH+6MCgYEAtZ7BKSda3PpWpcV6BTce\nUAXvHhZlyDhPrq7dYASwXupo6IFjNpHlHLjW0LmBGw5MHwqfxkQTVf9SRwbCXwg7\nD+6m1eSGKZ88+MfiA67PW1ThRvzKR27M3wTuilGdwYg4cl+z+quzaLusdqokaXJQ\nNcpUmKCZXCqBWkq72qpmlk0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "aymericcouprie@platinum-avenue-270020.iam.gserviceaccount.com",
+  "client_id": "117891476196120223256",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/aymericcouprie%40platinum-avenue-270020.iam.gserviceaccount.com"
+}
