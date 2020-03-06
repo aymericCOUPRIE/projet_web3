@@ -44,7 +44,7 @@ module.exports = {
             var pathname = url.parse(req.url).pathname;
             pathname = pathname.split('/')[2];
             gestionCarriere.getAllInfos(pathname, function (result) {
-                res.render('pages/admin/updateSite', {sitesInfos: result.recordset[0], isConnected: id, droits: droits });
+                res.render('pages/admin/updateSite', {sitesInfos: result[0], isConnected: id, droits: droits });
             })
         });
     },

@@ -5,30 +5,49 @@
     <div class="row mt-5">
         <div class="col-md-auto">
             <h1 class="display-4 m-b-2"> Vos informations </h1>
-            <form method="POST" action="../../../../../../..?_method=PUT">
-                <div class="form-group mt-5">
-                    <label for="nomSite"> nomSite </label>
-                    <input class="form-control" id="nomSite" type="text" name="nomSite" required="required" />
-                </div>
-                <div class="form-group">
-                    <label for="profondeur"> Profondeur </label>
-                    <input class="form-control" id="profondeur" type="number" step="any" name="profondeur" required="required" />
-                </div>
-                <div class="form-group">
-                    <label for="longitude"> Longitude </label>
-                    <input class="form-control" id="longitude" type="number" step="any" name="longitude" required="required" />
-                </div>
-                <div class="form-group">
-                    <label for="latitude"> Latitude </label>
-                    <input class="form-control" id="latitude" type="number" step="any" name="latitude" required="required" />
-                </div>
-                <div class="form-group">
-                    <label for="description"> Description </label>
-                    <textarea class="form-control" id="description" type="text" name="description" required="required"> </textarea>
+            <form method="POST" action="/profil/updateInfos/?_method=PUT">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mt-5">
+                            <label for="nomSite"> Nom </label>
+                            <input class="form-control" id="nom" type="text" name="nom" value="<%= userInfos.nomUser %>" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="profondeur"> Prénom </label>
+                            <input class="form-control" id="prenom" type="text" value="<%= userInfos.prenomUser%>" name="prenom" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="longitude"> Mail </label>
+                            <input class="form-control" id="mail" type="email" value="<%= userInfos.mailUser%>" name="mail" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="latitude"> Date de Naissance </label>
+                            <input class="form-control" id="age" type="date" value="<%= userInfos.ageUser%>" name="age" required="required" />
+                        </div>
+                    </div>
+                    <div class="col-md-auto m-5">
+                        <ul style="list-style-type: none">
+                            <% userCertifs.forEach( function (certif) { %>
+                                <li>
+                                    <% if(certif.idUser != null) {%>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="defaultChecked" checked="">
+                                            <label class="custom-control-label" for="defaultChecked"> <%= certif.labelNiv %> </label>
+                                        </div>
+                                    <% } else {%>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="defaultChecked">
+                                            <label class="custom-control-label" for="defaultChecked"> <%= certif.labelNiv %></label>
+                                        </div>
+                                    <% } %>
+                                </li>
+                            <% });%>
+                        </ul>
+                    </div>
                 </div>
                 <button class="btn btn-primary" type="submit" value="" name="updateBtn">Valider</button>
             </form>
-            <form  method="POST" action="/admin/supprimerSite/?_method=DELETE">
+            <form  method="POST" action="/profil/supprimerProfil/?_method=DELETE">
                 <button class="btn btn-danger " name="deleteBtn"> Supprimer </button>
             </form>
         </div>

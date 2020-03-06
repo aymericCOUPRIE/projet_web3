@@ -16,7 +16,7 @@ router.use( function (req,res, next) {
 });
 
 router.get('/infosPerso', profil.infosPersonnellesDisplay);
-//router.put('/infosPerso', profil.updateInfosPerso);
+router.put('/infosPerso', profil.updateInfosPerso);
 //router.delete('/infosPerso', profil.deleteProfil);
 
 router.get('/listeVisites', profil.listeVisiteDisplay);

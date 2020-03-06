@@ -19,6 +19,7 @@ router.get('/deconnexion', home.deconnexion);
 
 
 router.get('/upload', home.formImageDisplay);
+
 router.post('/upload', uploadHandler.any(), function (req, res) {
     res.json(req.files);
 });
