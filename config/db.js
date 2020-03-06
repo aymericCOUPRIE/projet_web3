@@ -1,34 +1,10 @@
-/*var sql = require("mssql/msnodesqlv8");
-
-var dbConfig = {
-    driver: 'msnodesqlv8',
-    server: "PCAYMERICDELL", //PCAYMERICDELL ou 169.254.146.24
-    database: "NodeJSDb",
-    user: "aymeric.couprie@hotmail.com",
-    password: 'aze',
-    port: 1433,
-    options: {
-        trustedConnection: true,
-        useUTC: true
-    }
-};
-
-var connection = new sql.ConnectionPool(dbConfig, function (err) {
-    if (err) console.log(err);
-});
-
-connection.connect();
-
-module.exports = connection;
-
-*/
 var mysql = require('mysql');
 
 var connexion = mysql.createConnection({
-    database: 'nodeJSDb',
-    host: 'localhost',
-    user: 'root',
-    password: ''
+    database: 'heroku_6eb2a7bfc1b31b2',
+    host: 'eu-cdbr-west-02.cleardb.net',
+    user: 'bbab736053d516',
+    password: '68bd7814'
 });
 
 connexion.connect(function (err) {
