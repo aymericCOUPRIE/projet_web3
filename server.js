@@ -80,9 +80,12 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.set('port', process.env.PORT || 8080);
-
+//app.set('port', process.env.PORT || 8080);
+let port = process.env.PORT;
+if(port == null) {
+    port = 8080;
+}
 //var server = app.listen(app.get('port'), function () {
 //    debug('Express server listening on port ' + server.address().port);
 //});
-app.listen(8080);
+app.listen(port);
