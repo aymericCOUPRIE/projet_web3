@@ -8,7 +8,9 @@ var connexion = mysql.createConnection({
 });
 
 
-connexion.connect();
+connexion.connect( function (err ) {
+    console.log(err);
+});
 
 /*
 connexion.getConnection((err, connect) => {
