@@ -7,11 +7,15 @@ var connexion = mysql.createConnection({
     password: '68bd7814'
 });
 
+
+connexion.connect();
+
+/*
 connexion.getConnection((err, connect) => {
     if(err)
         console.error("Something went wrong connecting to the database ...");
     if(connect)
         connect.release();
 });
-
+*/
 module.exports = connexion;
