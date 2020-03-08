@@ -6,7 +6,7 @@
     <div class="row mt-5">
         <div class="col-md-auto">
             <h1 class="display-4 m-b-2">Ajout d'un site de plongée</h1>
-            <form method="POST" action="./admin/ajoutSite">
+            <form method="POST" action="/admin/ajoutSite">
                 <div class="form-group mt-5">
                     <label for="nomSite"> nomSite </label>
                     <input class="form-control" id="nomSite" type="text" placeholder="NomSite..." name="nomSite" required="required" />
@@ -28,9 +28,17 @@
                     <textarea class="form-control" id="description" type="text" placeholder="description..." name="description" required="required"></textarea>
                 </div>
                 <button class="btn btn-primary" type="submit">Valider</button>
-
             </form>
         </div>
+    </div>
+    <div class="mt-5">
+        <form method="post" action="/admin/uploadPhoto" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="photo_produit">Photo</label> :
+                <input type="file" name="photo_produit" multiple>
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+        </form>
     </div>
 </div>
 
