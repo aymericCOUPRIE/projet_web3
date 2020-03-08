@@ -22,7 +22,7 @@ module.exports = {
     },
 
     getAllNomsAndDesc: function(req, cb) {
-        connection.query("SELECT nomSitePl, descSitePl FROM sitePlongee ORDER BY nomSitePl", function(err, result) {
+        connection.query("SELECT DISTINCT nomSitePl, descSitePl, nomImg FROM sitePlongee LEFT JOIN images ON images.idSitePl = siteplongee.idSitePl ORDER BY nomSitePl", function(err, result) {
             if(err) {
                 console.log(err);
             } else {
@@ -89,5 +89,15 @@ module.exports = {
             }
         });
 
-    }
-}
+    },
+
+    insertImage: function (path, id, cb) {
+        connection.query("INSERT INTO images (nomImg, idSitePl) VALUES (?, ?)", [path, id], function (err, result) {
+            if(err) {
+                console.log(err);
+            } else {
+                cb(result);
+            }
+        });
+    },
+};

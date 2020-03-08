@@ -29,10 +29,21 @@
                 <input type="hidden" name="idCarriere" value="<%= sitesInfos.idSitePl%>">
                 <button class="btn btn-primary" type="submit" value="" name="updateBtn">Valider</button>
             </form>
+
             <form  method="POST" action="/admin/supprimerSite/?_method=DELETE">
                 <button class="btn btn-danger " name="deleteBtn" value="<%=sitesInfos.nomSitePl %>"> Supprimer </button>
             </form>
         </div>
+    </div>
+    <div class="mt-5">
+        <form method="post" action="/admin/uploadPhoto" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="photo_produit">Photo</label> :
+                <input type="file" name="photo_produit" multiple>
+                <input type="hidden" name="idCarriere" value="<%= sitesInfos.idSitePl%>">
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+        </form>
     </div>
 </div>
 

@@ -1,6 +1,9 @@
 var gestionCarriere = require('../models/gestionCarriere');
 var identification = require('../models/identification');
 var url = require('url');
+var multer = require("multer");
+var multerGoogleStorage = require('multer-google-storage');
+
 
 
 module.exports = {
@@ -84,5 +87,16 @@ module.exports = {
                 res(0);
             }
         })
-    }
+    },
+
+    insertImage: function (req, res) {
+
+        const id = req.sanitize(req.body.idCarriere);
+        console.log(id);
+        console.log(req.files[0].path);
+
+        gestionCarriere.insertImage(req.files[0].path, id, function (err, result) {
+            res.redirect('/admin/ajoutSite');
+        });
+    },
 }

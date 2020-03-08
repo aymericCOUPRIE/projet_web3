@@ -34,10 +34,6 @@ router.delete('/supprimerSite/?*', admin.deleteCarriere);
 router.put('/modifierSite/?*', admin.modifierSite);
 
 //router.get('/upload', home.formImageDisplay);
-router.post('/uploadPhoto', uploadHandler.any(), function (req, res) {
-    //admin.insertImage(req.files[0].path);
-    res.redirect('/');
-//    console.log(req.files[0].path);
-});
+router.post('/uploadPhoto', uploadHandler.any(), admin.insertImage);
 
 module.exports = router;
