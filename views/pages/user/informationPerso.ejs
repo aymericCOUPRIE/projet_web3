@@ -24,6 +24,18 @@
                             <label for="latitude"> Date de Naissance</label>
                             <input class="form-control" id="age" type="date" value="<%= userInfos.ageUser%>" name="age" required="required" />
                         </div>
+                        <div class="form-group">
+                            <label> Ancien mot de passe </label>
+                            <input class="form-control" type="password" name="oldPwd" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label> Nouveau mot de passe </label>
+                            <input class="form-control" type="password" name="newPwd1" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label> Nouveau mot de passe </label>
+                            <input class="form-control" type="password" name="newPwd2" required="required" />
+                        </div>
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit">Valider</button>

@@ -4,7 +4,7 @@ const gestionUser = require('../models/gestionUser');
 const gestionCertification = require('../models/gestionCertifications');
 const url = require('url');
 const moment = require('moment');
-
+const bcrypt = require('bcryptjs');
 module.exports = {
 
     infosPersonnellesDisplay: function (req, res) {
@@ -19,22 +19,41 @@ module.exports = {
 
 
     updateInfosPerso: function(req, res) {
-        console.log(req.body);
 
         const nom = req.sanitize(req.body.nom);
         const prenom = req.sanitize(req.body.prenom);
         const mail = req.sanitize(req.body.mail);
         const age = req.sanitize(req.body.age);
-
+        const pwd = req.sanitize(req.body.oldPwd);
+        const pwd1 = req.sanitize(req.body.newPwd1);
+        const pwd2 = req.sanitize(req.body.newPwd2);
 
         if(nom == null || prenom == null || mail == null || age == null) {
-            console.log("IL MANQUE DES INFOS");
+            res.redirect('/profil/infosPerso');
         }
 
         identification.extractUserFromCookieToken(req, function (id) {
             infosUser = [nom, prenom, mail, age, id];
             gestionUser.updateUser(infosUser, function (result) {
-                res.redirect('/profil/infosPerso');
+                if(pwd != null && pwd1 == pwd2) {
+                    identification.extractUserFromCookieToken(req, function (id) {
+                        gestionUser.getPwdUser(id, function (pwdUser) {
+                            bcrypt.compare(pwd, pwdUser[0].passwordUser, function (err, match) {
+                                if (match) {
+                                    bcrypt.hash(pwd1, 4, function (err, bcryptPassword) {
+                                        gestionUser.updateUserPwd(bcryptPassword, id, function (result) {
+                                            res.redirect('/');
+                                        });
+                                    });
+                                } else {
+                                    res.redirect('/profil/infosPerso');
+                                }
+                            })
+                        })
+                    })
+                } else {
+                    res.redirect('/profil/infosPerso');
+                }
             });
         });
     },

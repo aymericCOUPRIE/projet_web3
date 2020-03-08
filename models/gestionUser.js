@@ -11,16 +11,6 @@ module.exports = {
         });
     },
 
-    getAllUserCertification: function (req, cb) {
-        connection.query("SELECT * FROM certifusers WHERE idUser = ?", req, function (err, result) {
-            if(err) {
-                console.log(err);
-            } else {
-                cb(result);
-            }
-        });
-    },
-
     getAllVisitUser: function (req, cb) {
         connection.query("SELECT * FROM visite INNER JOIN sitePlongee ON idSitePl = idSite WHERE idUser = ? ORDER BY date ", req, function (err, result) {
             if(err) {
@@ -72,5 +62,26 @@ module.exports = {
             }
         })
     },
+
+    getPwdUser: function (req, cb) {
+        connection.query("SELECT passwordUser FROM users WHERE idUser = ?", [req], function (err, result) {
+            if(err) {
+                console.log(err)
+            } else {
+                cb(result);
+            }
+        })
+    },
+
+    updateUserPwd: function (req,id,  cb) {
+        connection.query("UPDATE users SET passwordUser = ? WHERE idUser = ? ", [req, id], function (err, result) {
+            console.log("MESSAGE", err, result);
+            if(err) {
+                console.log(err)
+            } else {
+                cb(result);
+            }
+        })
+    }
 
 };

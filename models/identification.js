@@ -66,8 +66,4 @@ module.exports = {
         });
 
     },
-
-    getNomToken: function (req, cb) {
-        cb(nomToken);
-    },
 }
