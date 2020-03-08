@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 
+/*
 var connexion = mysql.createConnection({
     database: 'nodeJSDb',
     host: 'localhost',
@@ -13,10 +14,10 @@ connexion.connect(function (err) {
 
     console.log("Connexion effectuée");
 });
+*/
 
 
 
-/*
 var connexion = mysql.createPool({
     database: 'heroku_6eb2a7bfc1b31b2',
     host: 'eu-cdbr-west-02.cleardb.net',
@@ -32,5 +33,4 @@ connexion.getConnection((err, connect) => {
         connect.release();
 });
 
- */
 module.exports = connexion;
