@@ -17,7 +17,8 @@ module.exports = {
         var pwd = req.sanitize(req.body.pwd);
 
         idendification.getUserWithMail(mail, function(infosUsers) {
-            if(infosUsers[0].passwordUser != null) {
+            console.log("INFOS USER", infosUsers[0])
+            if(infosUsers[0] != null) {
                 bcrypt.compare(pwd, infosUsers[0].passwordUser, function (err, match) {
                     idendification.extractUserFromCookieToken(req, function (result) {
                         if (match && result == 0) {
@@ -57,7 +58,7 @@ module.exports = {
                 bcrypt.hash(pwd, 5, function (err, bcryptedPassword) {
                     var user = [nom, prenom, mail, bcryptedPassword, dateN, 1];
                     idendification.insertUser(user, function (idInsert) {
-                        res.redirect('/');
+                        res.redirect('/login');
                     });
                 });
             } else {

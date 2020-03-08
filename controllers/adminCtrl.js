@@ -56,18 +56,21 @@ module.exports = {
         const longitude = req.sanitize(req.body.longitude);
         const latitude = req.sanitize(req.body.latitude);
         const description = req.sanitize(req.body.description);
+        const id = req.sanitize(req.body.idCarriere);
 
-        if(nom == null || profondeur == null || longitude == null || latitude == null || description == null ) {
+        if(nom == null || profondeur == null || longitude == null || latitude == null || description == null || id == null) {
             return res.status(400).json({ 'error': 'missing parameters'})
         }
 
-        var sitesInfos = [nom, profondeur, longitude, latitude, description];
+        var sitesInfos = [nom, profondeur, longitude, latitude, description, id];
 
         gestionCarriere.verifSiteUnique(nom, function (result) {
             if(result) {
-                console.log("ERROR : LE NOM EXISTE DEJA EN BASE");
+                gestionCarriere.updateSite(sitesInfos, function(result) {
+                    console.log(result);
+                });
             } else {
-                gestionCarriere.updateSite(sitesInfos);
+                console.log("ERROR : LE NOM EXISTE DEJA EN BASE");
             }
         });
         res.redirect('/');

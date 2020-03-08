@@ -32,7 +32,7 @@ module.exports = {
     },
 
     getAllInfos: function (req, cb) {
-        connection.query("SELECT nomSitePl, profondeurSitePl, longitude, latitude, descSitePl, (\n" +
+        connection.query("SELECT idSitePl, nomSitePl, profondeurSitePl, longitude, latitude, descSitePl, (\n" +
                             "    SELECT ROUND(AVG(avis), 2) FROM visite WHERE idSite = (\n" +
                             "        SELECT idSitePl FROM siteplongee WHERE nomSitePl = ?\n" +
                             "    )\n" +
@@ -80,11 +80,10 @@ module.exports = {
         })
     },
 
-    updateSite: function (req, id, cb) {
-          connection.query("UPDATE sitePlongee SET nomSitePl = ?, profondeur = ?, longitude = ?, latitude = ?, descSitePl = ? WHERE idSitePl = ?", req, id, function (err, result) {
-
+    updateSite: function (req, cb) {
+          connection.query("UPDATE sitePlongee SET nomSitePl = ?, profondeurSitePl = ?, longitude = ?, latitude = ?, descSitePl = ? WHERE idSitePl = ? ", req, function (err, result) {
             if(err) {
-                console.log(err)
+                console.log(err);
             } else {
                 cb(result);
             }

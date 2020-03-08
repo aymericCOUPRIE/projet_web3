@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-auto">
-            <h1 class="display-4 m-b-2"> Vos informations </h1>
+            <h1 class="display-4 m-b-2"> Vos informations <%= droits%></h1>
             <form method="POST" action="/profil/updateInfos?_method=PUT">
                 <div class="row">
                     <div class="col">
@@ -21,33 +21,41 @@
                             <input class="form-control" id="mail" type="email" value="<%= userInfos.mailUser%>" name="mail" required="required" />
                         </div>
                         <div class="form-group">
-                            <label for="latitude"> Date de Naissance </label>
+                            <label for="latitude"> Date de Naissance <%= userInfos.ageUser%></label>
                             <input class="form-control" id="age" type="date" value="<%= userInfos.ageUser%>" name="age" required="required" />
                         </div>
-                    </div>
-                    <div class="col-md-auto m-5">
-                        <ul style="list-style-type: none">
-                            <% userCertifs.forEach( function (certif) { %>
-                                <li>
-                                    <div class="custom-control custom-checkbox">
-                                        <% if(certif.idUser != null) {%>
-                                                <input type="checkbox" id="defaultChecked" name="<%= certif.labelNiv%>" checked="">
-                                                <label> <%= certif.labelNiv %></label>
-                                        <% } else {%>
-                                                <input type="checkbox" id="defaultChecked">
-                                                <label> <%= certif.labelNiv %></label>
-                                        <% } %>
-                                    </div>
-                                </li>
-                            <% });%>
-                        </ul>
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit">Valider</button>
             </form>
-            <form  method="POST" action="/profil/supprimerProfil/?_method=DELETE">
-                <button class="btn btn-danger " name="deleteBtn"> Supprimer </button>
-            </form>
+            <% if (droits == 1 ) {%>
+                <form  method="POST" action="/profil/supprimerProfil/?_method=DELETE">
+                    <button class="btn btn-danger " name="deleteBtn"> Supprimer </button>
+                </form>
+            <% } %>
+        </div>
+        <div class="col-md-auto m-5">
+            <ul style="list-style-type: none">
+                <% for (var i = 0; i < userCertifs.length ; i++) { %>
+                    <li>
+                        <div class="custom-control custom-checkbox">
+                            <% if(userCertifs[i].idUser != null) {%>
+                            <form method="POST" action="/profil/deleteCertif/?_method=DELETE">
+                                 <input type="checkbox" checked>
+                                    <label for="nomCertifOn"> <%= userCertifs[i].labelNiv %></label>
+                                    <button type="submit" name="nomCertif" value="<%= userCertifs[i].labelNiv %>"> Décocher </button>
+                                </form>
+                            <% } else {%>
+                                <form method="POST" action="/profil/insertCertif">
+                                    <input type="checkbox">
+                                    <label for="nomCertifOff"> <%= userCertifs[i].labelNiv %></label>
+                                    <button type="submit" name="nomCertif" value="<%= userCertifs[i].labelNiv %>"> Cocher </button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </li>
+                <% };%>
+            </ul>
         </div>
     </div>
 </div>

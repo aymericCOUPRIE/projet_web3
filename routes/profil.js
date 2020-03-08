@@ -24,4 +24,9 @@ router.get('/listeVisites', profil.listeVisiteDisplay);
 router.put('/updateNoteVisit/?*', profil.updateVisite);
 router.post('/addToVisit*', profil.ajoutVisit);
 
+router.post('/insertCertif', profil.ajouterCertif);
+router.delete('/deleteCertif', profil.deleteCertif);
+
+router.delete('/supprimerProfil', profil.supprimerProfil);
+
 module.exports = router;
