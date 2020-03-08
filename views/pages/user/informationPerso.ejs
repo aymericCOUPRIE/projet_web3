@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-auto">
-            <h1 class="display-4 m-b-2"> Vos informations <%= droits%></h1>
+            <h1 class="display-4 m-b-2"> Vos informations</h1>
             <form method="POST" action="/profil/updateInfos?_method=PUT">
                 <div class="row">
                     <div class="col">
@@ -21,7 +21,7 @@
                             <input class="form-control" id="mail" type="email" value="<%= userInfos.mailUser%>" name="mail" required="required" />
                         </div>
                         <div class="form-group">
-                            <label for="latitude"> Date de Naissance <%= userInfos.ageUser%></label>
+                            <label for="latitude"> Date de Naissance</label>
                             <input class="form-control" id="age" type="date" value="<%= userInfos.ageUser%>" name="age" required="required" />
                         </div>
                     </div>

@@ -28,12 +28,9 @@ router.use( function (req,res, next) {
 
 router.get('/ajoutSite', admin.afficheFormulaire);
 router.get('/modifierSite/*', admin.afficherModification);
-
 router.post('/ajoutSite', admin.ajoutSite);
 router.delete('/supprimerSite/?*', admin.deleteCarriere);
 router.put('/modifierSite/?*', admin.modifierSite);
-
-//router.get('/upload', home.formImageDisplay);
 router.post('/uploadPhoto', uploadHandler.any(), admin.insertImage);
 
 module.exports = router;
